@@ -11,14 +11,14 @@
         </service>
 	<!-- Services --> 
 	 <!-- Update Google Products -->
-        <service id="Roshyara\GoogleContentApi\Service\UpdateGoogleProductsService" />
-
+	<service id="Roshyara\GoogleContentApi\Service\UpdateGoogleProductsService"/>
 	<!-- Schedules --> 
 	<service id="Roshyara\GoogleContentApi\Service\ScheduledTask\UpdateGoogleProductsTask">
             <tag name="shopware.scheduled.task" />
     	</service>
     	<service id="Roshyara\GoogleContentApi\Service\ScheduledTask\UpdateGoogleProductsTaskHandler">
-            <argument type="service" id="scheduled_task.repository" />
+		<!-- <argument type="service" id ="Roshyara\GoogleContentApi\Service\UpdateGoogleProductsService" /> -->
+		  <argument type="service" id="scheduled_task.repository" />
             <tag name="messenger.message_handler" />
     	</service>
 

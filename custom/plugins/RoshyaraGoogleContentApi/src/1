@@ -13,16 +13,14 @@ class UpdateGoogleProductsTaskHandler extends ScheduledTaskHandler
         return [ UpdateGoogleProductsTask::class ];
     }
      private  function setter(){
-	 echo "here is setter \n";    
-	 $this->updateService =new UpdateGoogleProductsService();
+       $this->updateService =new UpdateGoogleProductsService();
      }
     public function run(): void
     {
          // file_put_contents('some/where/some/file.md', 'example');
 	// php bin/console update:google-products;
 	$this->setter();    
-	//$this->updateService->getGoogleMerchantProducts();
+	$this->updateService->getGoogleMerchantProducts();
 	echo "test schedule\n";	
-	echo "\n-----------------\n";
     }
 }
