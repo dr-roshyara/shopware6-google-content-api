@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="Pickware\PickwareErpStarter\SupplierOrder\Indexer\IncomingStockIndexer">
+            <argument id="Shopware\Core\Content\Product\ProductDefinition" type="service" />
+            <argument id="Shopware\Core\Framework\DataAbstractionLayer\Dbal\Common\IteratorFactory" type="service" />
+            <argument id="Pickware\PickwareErpStarter\Product\PickwareProductInitializer" type="service" />
+            <argument id="Pickware\PickwareErpStarter\SupplierOrder\IncomingStockUpdater" type="service" />
+            <tag name="shopware.entity_indexer" />
+        </service>
+    </services>
+</container>

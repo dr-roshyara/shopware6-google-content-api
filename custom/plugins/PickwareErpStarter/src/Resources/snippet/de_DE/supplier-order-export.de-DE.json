@@ -1,0 +1,21 @@
+{
+    "pickware-erp-starter": {
+        "supplier-order-export": {
+            "file-name": "Lieferantenbestellung %s %s",
+            "columns": {
+                "supplier-product-number": "Lieferantenproduktnummer",
+                "gtin": "EAN",
+                "product-number": "Produktnummer",
+                "product-name": "Produktname",
+                "manufacturer": "Hersteller",
+                "manufacturer-number": "Herstellernummer",
+                "min-purchase": "Mindestabnahme",
+                "purchase-steps": "Abnahmeintervall",
+                "quantity": "Menge",
+                "unit-price": "EK (netto)",
+                "total-price": "Summe (netto)"
+            },
+            "deleted": "gelöscht"
+        }
+    }
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <parameters>
+        <parameter key="pickware_erp.import_export.csv_to_database_reader.batch_size">1000</parameter>
+        <parameter key="pickware_erp.import_export.jsonl_to_database_reader.batch_size">1000</parameter>
+        <parameter key="pickware_erp.import_export.database_to_csv_writer.batch_size">1000</parameter>
+    </parameters>
+    <services>
+        <service id="Pickware\PickwareErpStarter\ImportExport\ReadWrite\DependencyInjection\ImportExportReaderRegistry">
+            <argument type="tagged" tag="pickware_erp.import_export.import_export_reader" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\ImportExport\ReadWrite\Csv\CsvToDatabaseReader">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument id="document_bundle.filesystem.private" type="service" />
+            <argument id="Franzose\DoctrineBulkInsert\Query" type="service" />
+            <argument>%pickware_erp.import_export.csv_to_database_reader.batch_size%</argument>
+            <tag name="pickware_erp.import_export.import_export_reader" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\ImportExport\ReadWrite\Csv\DatabaseToCsvWriter">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument id="document_bundle.filesystem.private" type="service" />
+            <argument
+                type="service"
+                id="Pickware\PickwareErpStarter\ImportExport\DependencyInjection\ExporterRegistry"
+            />
+            <argument>%pickware_erp.import_export.database_to_csv_writer.batch_size%</argument>
+        </service>
+        <service id="Pickware\PickwareErpStarter\ImportExport\ReadWrite\Jsonl\JsonlToDatabaseReader">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument id="document_bundle.filesystem.private" type="service" />
+            <argument id="Franzose\DoctrineBulkInsert\Query" type="service" />
+            <argument>%pickware_erp.import_export.jsonl_to_database_reader.batch_size%</argument>
+            <tag name="pickware_erp.import_export.import_export_reader" />
+        </service>
+    </services>
+</container>

@@ -1,0 +1,59 @@
+{
+    "name": "pickware/money-bundle",
+    "description": "A bundle for Shopware 6 to provide a money library",
+    "license": "proprietary",
+    "type": "library",
+    "version": "2.0.27.2",
+    "authors": [
+        {
+            "name": "Pickware GmbH",
+            "email": "info@pickware.de"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "pickware/bundle-installer": "^1.0.2",
+        "pickware/dal-bundle": "^3.20.0",
+        "shopware/core": "6.4.*,>=6.4.5",
+        "symfony/config": "^5.2.3",
+        "symfony/dependency-injection": "^5.2.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5.0"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../libraries/composer-packages/*"
+        },
+        {
+            "type": "path",
+            "url": "../../bundles/*"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Pickware\\MoneyBundle\\": "src"
+        },
+        "exclude-from-classmap": [
+            "**.unit.php",
+            "**.integration.php"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true,
+            "viison/composer-git-hooks-installer-plugin": true
+        },
+        "lock": false
+    },
+    "extra": {
+        "ci-min-supported-shopware-version": "6.4.8.0"
+    },
+    "scripts": {
+        "test:integration": "${SHOPWARE_DIR}/vendor/bin/phpunit --config phpunit.integration.xml --testdox",
+        "test:unit": "./vendor/bin/phpunit --config phpunit.unit.xml --testdox"
+    }
+}

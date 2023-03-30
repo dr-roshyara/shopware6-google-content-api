@@ -1,0 +1,201 @@
+<div class="wawision-shopimporter-dashboard">
+
+    {% block wawision_shopimporter_content_dashboard %}
+        <sw-container >
+            {% block wawision_shopimporter_content_dashboard_status %}
+                <template v-if="connected && status && !ready">
+
+                    {% block wawision_shopimporter_content_dashboard_status_loading %}
+                        <sw-card class="wawision-shopimporter-dashboard__status-loading">
+                            <div class="wawision-shopimporter-dashboard__status-loading-item__icon background--enabled">
+                                <sw-icon name="default-arrow-360-full" color="#5962ec"></sw-icon>
+                            </div>
+                            <div class="wawision-shopimporter-dashboard__status-loading-item__text">
+                                {{ $tc('wawision-shopimporter.dashboard.syncState', progress, total, {progress: progress, total: total}) }}
+                            </div>
+                        </sw-card>
+                    {% endblock %}
+
+                    <sw-progress-bar :value="progress" :maxValue="total">
+                    </sw-progress-bar>
+                </template>
+
+                <template v-if="connected && status && ready">
+
+                    {% block wawision_shopimporter_content_dashboard_status_ready %}
+                        <sw-card class="wawision-shopimporter-dashboard__status-ready">
+                            <div class="wawision-shopimporter-dashboard__status-ready-item__icon background--enabled">
+                                <sw-icon name="default-basic-checkmark-line" color="#ffffff"></sw-icon>
+                            </div>
+                            <div class="wawision-shopimporter-dashboard__status-ready-item__text">
+                                {{ $tc('wawision-shopimporter.dashboard.readyState') }}
+                            </div>
+                            <sw-button @click="onCloseStatus()">
+                                {{ $tc('wawision-shopimporter.dashboard.close') }}
+                            </sw-button>
+                        </sw-card>
+                    {% endblock %}
+
+                </template>
+            {% endblock %}
+
+            {% block wawision_shopimporter_content_dashboard_headline %}
+                <template>
+                    <div class="wawision-shopimporter-dashboard__headline">
+                        <h1>Dashboard</h1>
+
+                        {% block wawision_shopimporter_content_dashboard_headline_pill_connected_true %}
+                            <sw-label v-if="init && connected"
+                                      class="wawision-shopimporter-dashboard__headline__pill-label"
+                                      size="medium"
+                                      appearance="pill">
+                                {{ $tc('wawision-shopimporter.dashboard.connected') }}
+                            </sw-label>
+                        {% endblock %}
+
+                        {% block wawision_shopimporter_content_dashboard_headline_pill_connected_false %}
+                            <sw-label v-if="init && !connected"
+                                      class="wawision-shopimporter-dashboard__headline__pill-label disconnected"
+                                      size="medium"
+                                      appearance="pill">
+                                {{ $tc('wawision-shopimporter.dashboard.disconnected') }}
+                            </sw-label>
+                        {% endblock %}
+
+                        {% block wawision_shopimporter_content_dashboard_headline_button_disconnected %}
+                            <sw-button v-if="init && connected"
+                                       @click="onDisconnect()">
+                                <sw-icon name="default-action-log-out"></sw-icon>
+                                {{ $tc('wawision-shopimporter.dashboard.disconnect') }}
+                            </sw-button>
+                        {% endblock %}
+
+                        {% block wawision_shopimporter_content_dashboard_headline_button_reconnect %}
+                            <sw-button v-if="init && !connected"
+                                       @click="onReconnect()">
+                                <sw-icon name="default-action-log-in"></sw-icon>
+                                {{ $tc('wawision-shopimporter.dashboard.reconnect') }}
+                            </sw-button>
+                        {% endblock %}
+
+                        {% block wawision_shopimporter_content_dashboard_headline_button_settings %}
+                            <sw-button v-if="init"
+                                       @click="onwawisionSettings()">
+                                <sw-icon name="default-action-circle-download"></sw-icon>
+                                {{ $tc('wawision-shopimporter.dashboard.shopSettings') }}
+                            </sw-button>
+                        {% endblock %}
+
+                    </div>
+                </template>
+            {% endblock %}
+
+            {% block wawision_shopimporter_content_dashboard_loader %}
+                <sw-card v-if="connected && isLoadingStats">
+                    <sw-loader></sw-loader>
+                </sw-card>
+            {% endblock %}
+
+            {% block wawision_shopimporter_content_dashboard_statistics %}
+                <sw-card v-if="!isLoadingStats && tableData">
+
+                    {% block wawision_shopimporter_content_dashboard_statistics_title %}
+                        <div class="wawision-shopimporter-dashboard-statistics-headline">
+                            <div class="wawision-shopimporter-dashboard-statistics-headline-item__icon background--enabled">
+                                <sw-icon name="default-shopping-basket" color="#e56eca"></sw-icon>
+                            </div>
+                            <h1>{{ $tc('wawision-shopimporter.dashboard.statisticsOrdersTitle') }}</h1>
+                        </div>
+                    {% endblock %}
+
+                    {% block wawision_shopimporter_content_dashboard_statistics_content %}
+                        <sw-data-grid :dataSource="tableData"
+                                      :columns="columns"
+                                      :showSelection="false"
+                                      :showActions="false"
+                                      :compactMode="false">
+                        </sw-data-grid>
+                    {% endblock %}
+
+                </sw-card>
+            {% endblock %}
+
+            {% block wawision_shopimporter_content_dashboard_overview %}
+                <sw-card v-if="!isLoadingStats && ordersData">
+
+                    {% block wawision_shopimporter_content_dashboard_overview_title %}
+                        <div class="wawision-shopimporter-dashboard-overview-headline">
+                            <div class="wawision-shopimporter-dashboard-overview-headline-item__icon background--enabled">
+                                <sw-icon name="default-shopping-cart" color="#5962ec"></sw-icon>
+                            </div>
+                            <h1>{{ $tc('wawision-shopimporter.dashboard.overviewOrdersTitle') }}</h1>
+                        </div>
+                    {% endblock %}
+
+                    {% block wawision_shopimporter_content_dashboard_overview_content %}
+                        <sw-container columns="1fr 1fr" gap="0px 0px">
+                            {% block wawision_shopimporter_content_dashboard_overview_content_column_dispatch %}
+                            <div class="dashboard-overview-content-column">
+                                <span class="text">
+                                    {{ $tc('wawision-shopimporter.dashboard.dispatchOrders') }}
+                                </span>
+                                <span class="number">
+                                    {{ ordersData.shipment }}
+                                </span>
+                            </div>
+                            {% endblock %}
+
+                            {% block wawision_shopimporter_content_dashboard_overview_content_column_overview %}
+                            <div class="dashboard-overview-content-column">
+                                <span class="text">
+                                    {{ $tc('wawision-shopimporter.dashboard.pendingOrders') }}
+                                </span>
+                                <span class="number">
+                                    {{ ordersData.open }}
+                                </span>
+                            </div>
+                            {% endblock %}
+
+                        </sw-container>
+                    {% endblock %}
+
+                </sw-card>
+            {% endblock %}
+
+        </sw-container>
+    {% endblock %}
+
+    {% block wawision_shopimporter_content_usecases %}
+        <sw-container v-if="!isLinksLoading && dashboardLinks" columns="1fr 1fr 1fr" gap="20px 20px" class="wawision-shopimporter-dashboard-usecases">
+
+            <template v-for="item in dashboardLinks">
+                {% block wawision_shopimporter_content_usecases_button %}
+                    <sw-button :link="item.link" v-tooltip="{ message: item[`title_${ locale }`], showDelay: 300 }" class="">
+
+                        {% block wawision_shopimporter_content_usecases_image %}
+                            <template v-if="item[`svg_${ locale }`]">
+                                <img :src="item[`svg_${ locale }`]" @error="(() => item[`svg_${ locale }`] = null)" class="wawision-button-img">
+                            </template>
+                        {% endblock %}
+
+                        {% block wawision_shopimporter_content_usecases_title %}
+                            <template v-else>
+                                {{ item[`title_${ locale }`] }}
+                            </template>
+                        {% endblock %}
+
+                    </sw-button>
+                {% endblock %}
+            </template>
+
+        </sw-container>
+
+        {% block wawision_shopimporter_content_usecases_loader %}
+        <sw-card v-else>
+            <sw-loader></sw-loader>
+        </sw-card>
+        {% endblock %}
+
+    {% endblock %}
+
+</div>

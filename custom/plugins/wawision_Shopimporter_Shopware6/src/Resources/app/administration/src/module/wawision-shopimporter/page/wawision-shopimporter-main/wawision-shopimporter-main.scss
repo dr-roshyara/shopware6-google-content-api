@@ -1,0 +1,53 @@
+@import "~scss/variables";
+
+.wawision-shopimporter-main-index {
+    .sw-card {
+        max-width: 1000px;
+
+        .wawision-shopimporter-settings {
+            margin-bottom: 50px;
+
+            .wawision-button-content {
+                min-height: 250px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .wawision-button-content-text {
+                    width: 60%;
+                    float: left;
+                    font-size: 30px;
+                }
+
+                .wawision-button-content-img {
+                    width: 40%;
+                    float: left;
+                }
+            }
+
+            .wawision-button-label {
+                background: $color-shopware-brand-500;
+                color: $color-white;
+                position: absolute;
+                bottom: 0px;
+                left: 0px;
+                width: 100%;
+                line-height: 42px;
+                font-size: 18px;
+            }
+        }
+
+        .wawision-shopimporter-settings-usecases {
+            .sw-button {
+                width: 100%;
+                padding: unset;
+                border-radius: 8px;
+
+                .wawision-button-img {
+                    width: 100%;
+                    border-radius: 6px;
+                }
+            }
+        }
+    }
+}

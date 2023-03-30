@@ -1,0 +1,41 @@
+{% block sw_customer_list_grid_columns %}
+    {% parent() %}
+
+    {% block sw_customer_list_grid_columns_wawision_order_state %}
+        <template slot="column-customFields.wawision_shopimporter_datetime" slot-scope="{ item }">
+
+            {% block sw_customer_list_grid_columns_wawision_order_state_uptodate %}
+            <sw-label v-if="hasDateTime(item)"
+                      class="wawision-number__pill-label"
+                      variant="success"
+                      appearance="pill">
+                {{ $tc('wawision-shopimporter.extension.statusUptodate') }}
+            </sw-label>
+            {% endblock %}
+
+            {% block sw_customer_list_grid_columns_wawision_order_state_unsynced %}
+            <sw-label v-else
+                      class="wawision-number__pill-label"
+                      variant="danger"
+                      appearance="pill">
+                {{ $tc('wawision-shopimporter.extension.statusUnsynced') }}
+            </sw-label>
+            {% endblock %}
+
+        </template>
+    {% endblock %}
+
+{% endblock %}
+
+{% block sw_customer_list_grid_columns_actions_edit %}
+    {% parent() %}
+
+    {% block sw_order_list_grid_columns_actions_view_wawision %}
+    <sw-context-menu-item class="sw-customer-list__customer-view-wawision-customer-link"
+                          :disabled="!hasDateTime(item)"
+                          @click="openCustomerLink(item)">
+        {{ $tc('wawision-shopimporter.extension.openCustomerInwawisionButton') }}
+    </sw-context-menu-item>
+    {% endblock %}
+
+{% endblock %}

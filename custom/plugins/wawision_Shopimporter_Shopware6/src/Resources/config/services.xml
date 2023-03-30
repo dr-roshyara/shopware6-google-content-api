@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Controller -->
+        <service id="wawision\Shopimporter_Shopware6\Core\Framework\Wawision\Api\ShopimporterController" public="true">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="user.repository"/>
+            <argument type="service" id="log_entry.repository" />
+            <argument type="service" id="wawision\Shopimporter_Shopware6\Utils\Logger"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+
+        <service id="wawision\Shopimporter_Shopware6\Utils\Logger" class="Monolog\Logger">
+            <factory service="Shopware\Core\Framework\Log\LoggerFactory" method="createRotating"/>
+            <argument type="string">wawision_shopimporter</argument>
+        </service>
+    </services>
+</container>

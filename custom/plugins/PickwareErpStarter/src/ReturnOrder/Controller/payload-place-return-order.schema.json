@@ -1,0 +1,81 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "title": "Return order place-return-order payload",
+    "description": "POST request payload for api route _action/pickware-erp/place-return-order",
+    "type": "object",
+    "required": ["returnOrder"],
+    "additionalProperties": false,
+    "properties": {
+        "returnOrder": {
+            "$ref": "#/definitions/returnOrder"
+        }
+    },
+    "definitions": {
+        "returnOrder": {
+            "description": "A return order with items that will be restocked or written off",
+            "type": "object",
+            "required": ["id", "orderId", "lineItems"],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/definitions/uuid"
+                },
+                "orderId": {
+                    "$ref": "#/definitions/uuid"
+                },
+                "lineItems": {
+                    "$ref": "#/definitions/lineItems"
+                },
+                "warehouseId": {
+                    "$ref": "#/definitions/uuid"
+                }
+            }
+        },
+        "lineItems": {
+            "type": "array",
+            "items": {
+                "description": "An object with properties of a return order line item",
+                "type": "object",
+                "required": ["id", "quantity", "type"],
+                "additionalProperties": false,
+                "properties": {
+                    "id": {
+                        "$ref": "#/definitions/uuid"
+                    },
+                    "quantity": {
+                        "type": "number",
+                        "minimum": 0
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "restockedQuantity": {
+                        "type": "number",
+                        "minimum": 0
+                    },
+                    "writtenOffQuantity": {
+                        "type": "number",
+                        "minimum": 0
+                    },
+                    "productId": {
+                        "$ref": "#/definitions/uuidOrNull"
+                    }
+                }
+            }
+        },
+        "uuid": {
+            "description": "A UUID in HEX format",
+            "type": "string",
+            "minLength": 32,
+            "maxLength": 32,
+            "pattern": "^[0-9a-z]{32}$"
+        },
+        "uuidOrNull": {
+            "description": "A UUID in HEX format or null",
+            "type": ["string", "null"],
+            "minLength": 32,
+            "maxLength": 32,
+            "pattern": "^[0-9a-z]{32}$"
+        }
+    }
+}

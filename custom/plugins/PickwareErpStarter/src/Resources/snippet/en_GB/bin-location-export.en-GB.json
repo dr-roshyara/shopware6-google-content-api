@@ -1,0 +1,10 @@
+{
+    "pickware-erp-starter": {
+        "bin-location-export": {
+            "file-name": "Bin locations %s",
+            "columns": {
+                "code": "Name"
+            }
+        }
+    }
+}

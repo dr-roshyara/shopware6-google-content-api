@@ -1,0 +1,78 @@
+{
+    "wawision-shopimporter": {
+        "general": {
+            "mainMenuItemGeneral": "Xentral Business Booster",
+            "settingsItemGeneral": "Xentral Einstellungen",
+            "descriptionTextModule": "Verwalte Xentral hier"
+        },
+        "settings": {
+            "demoDescription": "14 Tage Demo<br>starten",
+            "demoButton": "KOSTENFREI TESTEN",
+            "liveDescription": "Verbinden mit<br>bestehenden",
+            "liveButton": "VERBINDEN",
+            "useCasesHeadline": "Use-Cases"
+        },
+        "dashboard": {
+            "syncState": "{progress} von {total} Laden von Produkten in die Produkttabelle",
+            "readyState": "Der Import ist abgeschlossen",
+            "close": "Schliessen",
+            "disconnect": "Disconnect",
+            "reconnect": "Reconnect",
+            "connected": "Verbunden",
+            "disconnected": "Nicht verbunden",
+            "shopSettings": "Shopeinstellungen bei Xentral",
+            "statisticsOrdersTitle": "Statistik Aufträge",
+            "packagesColumn": "Pakete",
+            "turnoverColumn": "Umsatz (netto)",
+            "todayRow": "heute",
+            "yesterdayRow": "gestern",
+            "overviewOrdersTitle": "Übersicht Aufträge",
+            "dispatchOrders": "Aufträge im Versand",
+            "pendingOrders": "Aufträge offen"
+        },
+        "extension": {
+            "openOrderInXentralButton": "Xentral Bestellung öffnen",
+            "syncOrderToXentralButton": "Bestellung zu Xentral übertragen",
+            "openProductInXentralButton": "Xentral Artikel öffnen",
+            "syncStorageToProductButton": "Lager zum Shop übertragen",
+            "syncProductToXentralButton": "Sync von Shop zu Xentral",
+            "syncXentralToProductButton": "Sync von Xentral zu Shop",
+            "openCustomerInXentralButton": "Xentral Kunde öffnen",
+            "syncWithXentral": "Synchronisiert mit Xentral",
+            "statusUptodate": "aktuell",
+            "statusSynced": "syncronisiert",
+            "statusUnsynced": "nicht syncronisiert",
+            "errorURL": "Konnte URL nicht erstellen, bitte prüfe deine Konfiguration",
+            "bulkSync": "Übertrage zu Xentral",
+            "syncMessage": "Soll das Produkt wirklich nach Xentral übertragen werden? | Sollen diese {count} Produkte wirklich nach Xentral übertragen werden?",
+            "syncTitle": "Produkt übertragen",
+            "transfer": "Übertragen"
+        },
+        "modal": {
+            "liveTitle": "Verbindung zu Ihrem Xentral herstellen",
+            "demoTitle": "Demo anfordern und Verbindung herstellen",
+            "liveHeadlineWelcome": "Willkommen zu Ihrer Xentral Verbindung",
+            "demoHeadlineWelcome": "Willkommen zu Ihrer Xentral Demo",
+            "liveDescription": "Hier bieten wir Ihnen die Möglichkeit sich ganz einfach mit Ihrer bestehenden Xentral-Instance zu verbinden.<br>Dazu geben Sie nur die URL in das zugehörige Feld ein.<br>Dann Speichern und Verbinden Sie sich mit Ihrem Xentral.",
+            "demoDescription": "Hier können Sie Xentral ganz leicht und ohne Verpflichtungen testen.<br>Sie fordern einfach eine Demo an und folgen den Schritten.<br>Nachdem Sie Ihre URL erhalten haben, geben Sie diese in das zugehörige Feld ein.<br>Dann Speichern und Verbinden Sie sich mit Ihrer Demo.",
+            "callbackHeadline": "Zugangsdaten anfordern",
+            "callbackDescription": "Nun nur noch die Zugangsdaten von Xentral holen und wir sind fertig mit der Konfiguration",
+            "finishHeadline": "Fertig",
+            "finishDescription": "Herzlichen Glückwunsch, Sie haben Ihr Xentral erfolgreich konfiguriert",
+            "demoButton": "Jetzt Demo anfordern",
+            "errorCredentials": "Konnte Zugangsdaten nicht holen, bitte überprüfe deine Konfiguration",
+            "host": "Xentral URL",
+            "hostPlaceholder": "Host-Namen eingeben ...",
+            "buttonSaveAndJump": "Fortfahren",
+            "buttonCloseModal": "Abbrechen",
+            "buttonBack": "Zurück",
+            "buttonNext": "Weiter",
+            "buttonFinish": "Fertig",
+            "stepItemTitle": {
+                "settings": "Step1",
+                "callback": "Step2",
+                "finish": "Step3"
+            }
+        }
+    }
+}

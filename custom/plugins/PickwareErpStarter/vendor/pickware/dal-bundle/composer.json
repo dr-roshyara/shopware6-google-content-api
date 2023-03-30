@@ -1,0 +1,61 @@
+{
+    "name": "pickware/dal-bundle",
+    "description": "A bundle for Shopware 6 that provides helpful utilities for the Shopware DAL",
+    "license": "proprietary",
+    "type": "library",
+    "version": "3.20.0",
+    "authors": [
+        {
+            "name": "Pickware GmbH",
+            "email": "info@pickware.de"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "composer/semver": "^3.0",
+        "doctrine/dbal": "^2.10.0",
+        "franzose/doctrine-bulk-insert": "^1.2",
+        "pickware/http-utils": "^2.14.0",
+        "shopware/core": "6.4.*,>=6.4.5",
+        "symfony/config": "^5.2.3",
+        "symfony/dependency-injection": "^5.2.3",
+        "symfony/event-dispatcher": "^5.2.3",
+        "symfony/http-foundation": "^5.2.3",
+        "symfony/validator": "^5.2.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5.0"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../libraries/composer-packages/*"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Pickware\\DalBundle\\": "src"
+        },
+        "exclude-from-classmap": [
+            "**.unit.php",
+            "**.integration.php"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "ergebnis/composer-normalize": true,
+            "viison/composer-git-hooks-installer-plugin": true
+        },
+        "lock": false
+    },
+    "extra": {
+        "ci-min-supported-shopware-version": "6.4.8.0"
+    },
+    "scripts": {
+        "test:integration": "${SHOPWARE_DIR}/vendor/bin/phpunit --config phpunit.integration.xml --testdox",
+        "test:unit": "./vendor/bin/phpunit --config phpunit.unit.xml --testdox"
+    }
+}

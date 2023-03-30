@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="Pickware\PickwareErpStarter\Stock\ProductSalesUpdater">
+            <argument id="Doctrine\DBAL\Connection" type="service" />
+            <argument id="Pickware\DalBundle\DatabaseBulkInsertService" type="service" />
+            <argument type="service" id="scheduled_task.repository" />
+            <tag name="messenger.message_handler" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Stock\ProductSalesUpdateTask">
+            <tag name="shopware.scheduled.task" />
+        </service>
+    </services>
+</container>

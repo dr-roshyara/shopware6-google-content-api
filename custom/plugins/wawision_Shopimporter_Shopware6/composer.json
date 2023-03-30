@@ -1,0 +1,42 @@
+{
+    "name": "wawision/shopimporter-shopware6",
+    "description": "Shopimporter Shopware6",
+    "version": "20.1.4",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Module Factory",
+            "homepage": "https://www.module-factory.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "wawision\\Shopimporter_Shopware6\\": "src/"
+        }
+    },
+    "require": {
+        "shopware/core": "^6.4"
+    },
+    "extra": {
+        "shopware-plugin-class": "wawision\\Shopimporter_Shopware6\\wawision_Shopimporter_Shopware6",
+        "plugin-icon": "src/Resources/config/logo.png",
+        "copyright": "(c) 2020 Iguana-Labs GmbH",
+        "label": {
+            "de-DE": "Shopware ERP & CRM extension (All-In-One Edition powered by xentral) für Shopware 6",
+            "en-GB": "Shopware ERP & CRM extension (All-In-One Edition powered by xentral) for Shopware 6"
+        },
+        "description": {
+            "de-DE": "Mit der Shopware E-Commerce Edition - powered by xentral, stehen Euch 100 Apps in nur einer All-In-One-Edition zur Verfügung: Versand, Labels, Abo, CRM, Retouren, Buchhaltung, Warenwirtschaft u.v.w.",
+            "en-GB": "With the Shopware E-Commerce Edition - powered by xentral, 100 apps are available in just one All-In-One-Edition: shipping, labels, subscription, CRM, returns, accounting, merchandise management and much more."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://www.module-factory.com",
+            "en-GB": "https://www.module-factory.com"
+        },
+        "supportLink": {
+            "de-DE": "https://xentral.com/shopware",
+            "en-GB": "https://xentral.com/shopware"
+        }
+    }
+}

@@ -1,0 +1,167 @@
+by-name:
+  # The following packages are shipped with v6.4.3.0 of shopware/core, which means our plugins don't have to ship them.
+  # Removing these dependecies from the plugin zips reduces the file size and may prevent several errors in the static
+  # code analysis of the Shopware Community Store.
+  # How to update this list:
+  #     clone shopware/core (e.g. `git clone git@github.com:shopware/core.git`)
+  #     checkout the desired version (e.g. `git checkout tags/v6.4.3.0`)
+  #     install all (non-dev!) dependencies with `composer update --no-dev`
+  #     Run `composer show -N` to list all installed package names
+  shopware/core: true
+  aws/aws-sdk-php: true
+  brick/math: true
+  cocur/slugify: true
+  composer/ca-bundle: true
+  composer/composer: true
+  composer/metadata-minifier: true
+  composer/pcre: true
+  composer/semver: true
+  composer/spdx-licenses: true
+  composer/xdebug-handler: true
+  defuse/php-encryption: true
+  doctrine/annotations: true
+  doctrine/cache: true
+  doctrine/collections: true
+  doctrine/dbal: true
+  doctrine/deprecations: true
+  doctrine/event-manager: true
+  doctrine/inflector: true
+  doctrine/lexer: true
+  doctrine/persistence: true
+  dompdf/dompdf: true
+  egulias/email-validator: true
+  enqueue/amqp-tools: true
+  enqueue/dbal: true
+  enqueue/dsn: true
+  enqueue/enqueue: true
+  enqueue/enqueue-bundle: true
+  enqueue/null: true
+  ezyang/htmlpurifier: true
+  firebase/php-jwt: true
+  friendsofphp/proxy-manager-lts: true
+  google/auth: true
+  google/cloud-core: true
+  google/cloud-storage: true
+  google/crc32: true
+  guzzlehttp/guzzle: true
+  guzzlehttp/promises: true
+  guzzlehttp/psr7: true
+  jdorn/sql-formatter: true
+  justinrainbow/json-schema: true
+  laminas/laminas-code: true
+  lcobucci/clock: true
+  lcobucci/jwt: true
+  league/event: true
+  league/flysystem: true
+  league/flysystem-aws-s3-v3: true
+  league/mime-type-detection: true
+  league/oauth2-server: true
+  marc1706/fast-image-size: true
+  monolog/monolog: true
+  mtdowling/jmespath.php: true
+  nyholm/psr7: true
+  paragonie/random_compat: true
+  phenx/php-font-lib: true
+  phenx/php-svg-lib: true
+  php-http/message-factory: true
+  psr/cache: true
+  psr/container: true
+  psr/event-dispatcher: true
+  psr/http-client: true
+  psr/http-factory: true
+  psr/http-message: true
+  psr/log: true
+  queue-interop/amqp-interop: true
+  queue-interop/queue-interop: true
+  ralouphie/getallheaders: true
+  ramsey/collection: true
+  ramsey/uuid: true
+  react/promise: true
+  rize/uri-template: true
+  sabberworm/php-css-parser: true
+  seld/jsonlint: true
+  seld/phar-utils: true
+  sensio/framework-extra-bundle: true
+  sroze/messenger-enqueue-transport: true
+  superbalist/flysystem-google-storage: true
+  symfony/amqp-messenger: true
+  symfony/asset: true
+  symfony/cache: true
+  symfony/cache-contracts: true
+  symfony/config: true
+  symfony/console: true
+  symfony/debug-bundle: true
+  symfony/dependency-injection: true
+  symfony/deprecation-contracts: true
+  symfony/doctrine-messenger: true
+  symfony/dotenv: true
+  symfony/error-handler: true
+  symfony/event-dispatcher: true
+  symfony/event-dispatcher-contracts: true
+  symfony/filesystem: true
+  symfony/finder: true
+  symfony/framework-bundle: true
+  symfony/http-client-contracts: true
+  symfony/http-foundation: true
+  symfony/http-kernel: true
+  symfony/inflector: true
+  symfony/intl: true
+  symfony/mailer: true
+  symfony/messenger: true
+  symfony/mime: true
+  symfony/monolog-bridge: true
+  symfony/monolog-bundle: true
+  symfony/options-resolver: true
+  symfony/password-hasher: true
+  symfony/polyfill-ctype: true
+  symfony/polyfill-intl-grapheme: true
+  symfony/polyfill-intl-idn: true
+  symfony/polyfill-intl-normalizer: true
+  symfony/polyfill-mbstring: true
+  symfony/polyfill-php72: true
+  symfony/polyfill-php73: true
+  symfony/polyfill-php80: true
+  symfony/polyfill-php81: true
+  symfony/process: true
+  symfony/property-access: true
+  symfony/property-info: true
+  symfony/proxy-manager-bridge: true
+  symfony/psr-http-message-bridge: true
+  symfony/redis-messenger: true
+  symfony/routing: true
+  symfony/security-core: true
+  symfony/serializer: true
+  symfony/service-contracts: true
+  symfony/string: true
+  symfony/translation: true
+  symfony/translation-contracts: true
+  symfony/twig-bridge: true
+  symfony/twig-bundle: true
+  symfony/validator: true
+  symfony/var-dumper: true
+  symfony/var-exporter: true
+  symfony/yaml: true
+  true/punycode: true
+  twig/intl-extra: true
+  twig/string-extra: true
+  twig/twig: true
+  zircote/swagger-php: true
+  # Since the list above is a list of the lowest compatible shopware/core version among all our plugins, some plugins
+  # will depend on a newer version of shopware/core and therefore may ship Shopware dependencies that are not listed
+  # above. These dependencies may cause errors in the Shopware Community Store static code analysis and need to be
+  # excluded manually.
+  # aws/aws-crt-php (shopware/core v6.4.6.0 required) causes "VULNERABILITY" error
+  aws/aws-crt-php: true
+  # shopwarelabs/dompdf (shopware/core v6.4.11.0 required) causes "Unexpected unknown property" error
+  shopwarelabs/dompdf: true
+
+  # Some pickware plugins requiring other pickware plugins to be installed should not ship their functionality, even if
+  # this functionality is available in a bundle.
+  # The pickware-erp-starter-bundle should only be excluded from anything that does not match either
+  # pickware-erp-starter or pickware-erp-pro.
+  pickware/pickware-erp-starter-bundle:
+    plugin: '!/pickware\/pickware-erp-(starter|pro)/'
+
+by-type:
+  # Plugins should never be shipped with other plugins, even though they have a dependency on them.
+  shopware-platform-plugin: true

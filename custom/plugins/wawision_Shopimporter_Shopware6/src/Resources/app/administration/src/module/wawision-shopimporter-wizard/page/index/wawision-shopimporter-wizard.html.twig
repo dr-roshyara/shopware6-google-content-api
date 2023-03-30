@@ -1,0 +1,7 @@
+{% block wawision_shopimporter_wizard %}
+    <div class="wawision-shopimporter-wizard">
+        {% block wawision_shopimporter_wizard_view_content %}
+            <wawision-shopimporter-wizard-modal v-if="showModal" @modal-close="showModal=false"></wawision-shopimporter-wizard-modal>
+        {% endblock %}
+    </div>
+{% endblock %}

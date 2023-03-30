@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="Pickware\DocumentBundle\Model\DocumentDefinition">
+            <tag name="shopware.entity.definition" />
+        </service>
+        <service id="Pickware\DocumentBundle\Model\DocumentTypeDefinition">
+            <tag name="shopware.entity.definition" />
+        </service>
+        <service id="Pickware\DocumentBundle\Model\Subscriber\DeleteFileSubscriber">
+            <argument id="document_bundle.filesystem.private" type="service" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+    </services>
+</container>

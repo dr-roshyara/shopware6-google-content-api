@@ -1,0 +1,21 @@
+{% block wawision_shopimporter_wizard_welcome %}
+<div class="wawision-shopimporter-modal__welcome">
+    <div class="center">
+        <img v-if="what=='demo'" :src="'wawision_shopimporter_shopware6/static/img/demo_icon.svg' | asset" class="wawision-shopimporter-modal__welcome-image">
+        <img v-if="what=='live'" :src="'wawision_shopimporter_shopware6/static/img/xentral_icon.svg' | asset" class="wawision-shopimporter-modal__welcome-image">
+        <h4 class="headline-welcome">{{ welcomeHeadline }}</h4>
+        <p v-html="welcomeDescription"
+           class="text-welcome">
+            {{ welcomeDescription }}
+        </p>
+
+        {% block wawision_shopimporter_wizard_welcome_demo_button %}
+        <sw-button v-if="what=='demo'"
+                   variant="primary"
+                   link="https://xentral.com/demo">
+            {{ $tc('wawision-shopimporter.modal.demoButton') }}
+        </sw-button>
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}

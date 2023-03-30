@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="Pickware\PickwareErpStarter\Analytics\AnalyticsService">
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+            <argument type="service" id="Doctrine\DBAL\Connection" />
+            <argument
+                type="service"
+                id="Pickware\PickwareErpStarter\Analytics\DependencyInjection\AnalyticsAggregatorRegistry"
+            />
+            <argument
+                type="service"
+                id="Pickware\PickwareErpStarter\Analytics\DependencyInjection\AnalyticsReportListItemCalculatorRegistry"
+            />
+            <argument
+                type="service"
+                id="Pickware\PickwareErpStarter\Analytics\DependencyInjection\AnalyticsReportListItemDefinitionRegistry"
+            />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Analytics\AnalyticsAggregationSessionService">
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+            <argument type="service" id="Pickware\PickwareErpStarter\Analytics\AnalyticsService" />
+            <argument
+                type="service"
+                id="Pickware\PickwareErpStarter\Analytics\DependencyInjection\AnalyticsAggregatorConfigFactoryRegistry"
+            />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Analytics\AnalyticsReportConfigService">
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+            <argument type="service" id="Pickware\PickwareErpStarter\Analytics\AnalyticsService" />
+            <argument
+                type="service"
+                id="Pickware\PickwareErpStarter\Analytics\DependencyInjection\AnalyticsReportConfigFactoryRegistry"
+            />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Analytics\DependencyInjection\AnalyticsAggregatorRegistry">
+            <argument type="tagged" tag="pickware_erp.analytics_aggregator" />
+        </service>
+        <service
+            id="Pickware\PickwareErpStarter\Analytics\DependencyInjection\AnalyticsReportListItemCalculatorRegistry"
+        >
+            <argument type="tagged" tag="pickware_erp.analytics_report_list_item_calculator" />
+        </service>
+        <service
+            id="Pickware\PickwareErpStarter\Analytics\DependencyInjection\AnalyticsReportListItemDefinitionRegistry"
+        >
+            <argument type="tagged" tag="pickware_erp.analytics_report_list_item_definition" />
+        </service>
+        <service
+            id="Pickware\PickwareErpStarter\Analytics\DependencyInjection\AnalyticsAggregatorConfigFactoryRegistry"
+        >
+            <argument type="tagged" tag="pickware_erp.analytics_aggregator_config_factory" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Analytics\DependencyInjection\AnalyticsReportConfigFactoryRegistry">
+            <argument type="tagged" tag="pickware_erp.analytics_report_config_factory" />
+        </service>
+    </services>
+</container>

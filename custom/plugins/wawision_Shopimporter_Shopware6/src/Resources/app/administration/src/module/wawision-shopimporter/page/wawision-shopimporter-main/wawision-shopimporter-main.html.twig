@@ -1,0 +1,120 @@
+{% block sw_settings %}
+<sw-page class="wawision-shopimporter-main-index" :showSmartBar="true">
+
+    {% block wawision_shopimporter_header %}
+    <template #smart-bar-header>
+        <h2>
+            {{ $tc('wawision-shopimporter.general.mainMenuItemGeneral') }}
+        </h2>
+    </template>
+    {% endblock %}
+
+    {% block wawision_shopimporter_content %}
+    <template #content>
+        {% block wawision_shopimporter_content_card %}
+        <sw-card-view>
+            <sw-card :hero="true" :large="true">
+
+                {% block wawision_shopimporter_content_card_main_actions_settings %}
+                    <sw-container v-if="settings" columns="1fr 1fr" gap="0px 20px" class="wawision-shopimporter-settings">
+
+                        {% block wawision_shopimporter_content_card_settings_actions_demo %}
+                        <sw-button :routerLink="{ name: 'wawision.shopimporter.wizard.index', params: { what: 'demo' } }" class="">
+
+                            {% block wawision_shopimporter_content_card_settings_actions_demo_content %}
+                            <div class="wawision-button-content">
+
+                                {% block wawision_shopimporter_content_card_settings_actions_demo_content %}
+                                <div v-html="demoDescription" class="wawision-button-content-text">
+                                    {{ demoDescription }}
+                                </div>
+                                {% endblock %}
+
+                                {% block wawision_shopimporter_content_card_settings_actions_demo_content_image %}
+                                <div class="wawision-button-content-img">
+                                    <img :src="'wawision_shopimporter_shopware6/static/img/demo_icon.svg' | asset" class="wawision-button-img">
+                                </div>
+                                {% endblock %}
+                            </div>
+                            {% endblock %}
+
+                            {% block wawision_shopimporter_content_card_settings_actions_demo_label %}
+                            <div class="wawision-button-label">
+                                {{ $tc('wawision-shopimporter.settings.demoButton') }}
+                            </div>
+                            {% endblock %}
+
+                        </sw-button>
+                        {% endblock %}
+
+                        {% block wawision_shopimporter_content_card_settings_actions_live %}
+                        <sw-button :routerLink="{ name: 'wawision.shopimporter.wizard.index', params: { what: 'live' } }" class="">
+
+                            {% block wawision_shopimporter_content_card_settings_actions_live_content %}
+                            <div class="wawision-button-content">
+
+                                {% block wawision_shopimporter_content_card_settings_actions_live_content %}
+                                <div v-html="liveDescription" class="wawision-button-content-text">
+                                    {{ liveDescription }}
+                                </div>
+                                {% endblock %}
+
+                                {% block wawision_shopimporter_content_card_settings_actions_live_content_image %}
+                                <div class="wawision-button-content-img">
+                                    <img :src="'wawision_shopimporter_shopware6/static/img/xentral_icon.svg' | asset" class="wawision-button-img">
+                                </div>
+                                {% endblock %}
+                            </div>
+                            {% endblock %}
+
+                            {% block wawision_shopimporter_content_card_settings_actions_live_label %}
+                            <div class="wawision-button-label">
+                                {{ $tc('wawision-shopimporter.settings.liveButton') }}
+                            </div>
+                            {% endblock %}
+
+                        </sw-button>
+                        {% endblock %}
+
+                    </sw-container>
+                {% endblock %}
+
+                {% block wawision_shopimporter_content_card_main_actions_usecases %}
+                <sw-container v-if="settings && dashboardLinks" columns="1fr 1fr 1fr" gap="20px 20px" class="wawision-shopimporter-settings-usecases">
+
+                    <template v-for="item in dashboardLinks">
+                        {% block wawision_shopimporter_content_card_main_actions_usecases_button %}
+                        <sw-button :link="item.link_alt" v-tooltip="{ message: item[`title_${ locale }`], showDelay: 300 }" class="">
+
+                            {% block wawision_shopimporter_content_card_main_actions_usecases_image %}
+                            <template v-if="item[`png_${ locale }`]">
+                                <img :src="item[`png_${ locale }`]  | asset" @error="(() => item[`png_${ locale }`] = null)" class="wawision-button-img">
+                            </template>
+                            {% endblock %}
+
+                            {% block wawision_shopimporter_content_card_main_actions_usecases_title %}
+                            <template v-else>
+                                {{ item[`title_${ locale }`] }}
+                            </template>
+                            {% endblock %}
+
+                        </sw-button>
+                        {% endblock %}
+                    </template>
+
+                </sw-container>
+                {% endblock %}
+
+                {% block wawision_shopimporter_content_card_main_actions_dashboard %}
+                    <wawision-shopimporter-dashboard v-if="dashboard" :wawisionSettings="wawisionSettings"></wawision-shopimporter-dashboard>
+                {% endblock %}
+
+            </sw-card>
+        </sw-card-view>
+        {% endblock %}
+
+    </template>
+    {% endblock %}
+
+</sw-page>
+{% endblock %}

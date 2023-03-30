@@ -1,0 +1,18 @@
+{% block wawision_shopimporter_wizard_settings %}
+    <div class="wawision-shopimporter-modal__settings">
+        <div class="center">
+            <sw-icon name="small-pencil" color="#3498db"></sw-icon>
+        </div>
+
+        {% block wawision_shopimporter_modal_content_host %}
+            <sw-field type="text"
+                      :label="$tc('wawision-shopimporter.modal.host')"
+                      :placeholder="$tc('wawision-shopimporter.modal.hostPlaceholder')"
+                      :required="validateDomain"
+                      required
+                      v-model="wawisionSettings['WawisionShopimporter.config.host']">
+            </sw-field>
+        {% endblock %}
+
+    </div>
+{% endblock %}

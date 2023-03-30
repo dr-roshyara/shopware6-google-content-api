@@ -1,0 +1,78 @@
+{
+    "wawision-shopimporter": {
+        "general": {
+            "mainMenuItemGeneral": "Xentral Business Booster",
+            "settingsItemGeneral": "Xentral settings",
+            "descriptionTextModule": "Manage Xentral here"
+        },
+        "settings": {
+            "demoDescription": "14 days demo<br>start",
+            "demoButton": "FREE TEST",
+            "liveDescription": "Connect with<br>existing",
+            "liveButton": "CONNECT",
+            "useCasesHeadline": "Use-Cases"
+        },
+        "dashboard": {
+            "syncState": "{progress} from {total} Loading of products into the product table",
+            "readyState": "The import is complete",
+            "close": "Close",
+            "disconnect": "Disconnect",
+            "reconnect": "Reconnect",
+            "Connected": "Connected",
+            "disconnected": "not connected",
+            "shopSettings": "Shop settings at Xentral",
+            "statisticsOrdersTitle": "Statistics orders",
+            "packagesColumn": "Packages",
+            "turnoverColumn": "Turnover (net)",
+            "todayRow": "today",
+            "yesterdayRow": "yesterday",
+            "overviewOrdersTitle": "Overview orders",
+            "dispatchOrders": "Orders in dispatch",
+            "pendingOrders": "Orders open"
+        },
+        "extension": {
+            "openOrderInXentralButton": "open Xentral order",
+            "syncOrderToXentralButton": "Transfer order to Xentral",
+            "openProductInXentralButton": "open Xentral article",
+            "syncStorageToProductButton": "Transfer stock to shop",
+            "syncProductToXentralButton": "Sync from Shop to Xentral",
+            "syncXentralToProductButton": "Sync from Xentral to Shop",
+            "openCustomerInXentralButton": "open Xentral customer",
+            "syncWithXentral": "synced with wawision",
+            "statusUptodate": "up-to-date",
+            "statusSynced": "synchronized",
+            "statusUnsynced": "unsynchronized",
+            "errorURL": "Could not create URL, please check your configuration",
+            "bulkSync": "Transfer to Xentral",
+            "syncMessage": "Should the product really be transferred to Xentral? | Should these {count} products really be transferred to Xentral?",
+            "syncTitle": "Transfer Product",
+            "transfer": "Transfer"
+        },
+        "modal": {
+            "liveTitle": "Connect to your Xentral",
+            "demoTitle": "Request Demo and connect",
+            "liveHeadlineWelcome": "Welcome to your Xentral connection",
+            "demoHeadlineWelcome": "Welcome to your Xentral demo",
+            "liveDescription": "Here we offer you the possibility to easily connect to your existing Xentral instance.<br>To do this, just enter the URL in the corresponding field.<br>Then save and connect to your Xentral.",
+            "demoDescription": "Here you can easily test Xentral without any obligations.<br>You simply request a demo and follow the steps.<br>After you have received your URL, enter it in the corresponding field.<br>Then save and connect to your demo.",
+            "callbackHeadline": "Request access data",
+            "callbackDescription": "Now just get the access data from Xentral and we are done with the configuration",
+            "finishHeadline": "Finish",
+            "finishDescription": "Congratulations, you have successfully configured your Xentral",
+            "demoButton": "Request demo now",
+            "errorCredentials": "Could not get access data, please check your configuration",
+            "host": "Xentral URL",
+            "hostPlaceholder": "Enter a host name...",
+            "buttonSaveAndJump": "Continue",
+            "buttonCloseModal": "Cancel",
+            "buttonBack": "Back",
+            "buttonNext": "Next",
+            "buttonFinish": "Finish",
+            "stepItemTitle": {
+                "settings": "Step1",
+                "callback": "Step2",
+                "finish": "Step3"
+            }
+        }
+    }
+}

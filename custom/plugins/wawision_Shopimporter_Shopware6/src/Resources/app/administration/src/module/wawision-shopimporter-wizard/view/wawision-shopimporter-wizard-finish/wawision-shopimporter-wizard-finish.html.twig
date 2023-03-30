@@ -1,0 +1,11 @@
+{% block wawision_shopimporter_wizard_finish %}
+<div class="wawision-shopimporter-modal__finish">
+    <div class="center">
+        <sw-icon name="default-basic-checkmark-line" color="#1abc9c"></sw-icon>
+        <h4 class="headline-finish">{{ $tc('wawision-shopimporter.modal.finishHeadline') }}</h4>
+        <p v-html="$tc('wawision-shopimporter.modal.finishDescription')"
+           class="text-finish">
+        </p>
+    </div>
+</div>
+{% endblock %}

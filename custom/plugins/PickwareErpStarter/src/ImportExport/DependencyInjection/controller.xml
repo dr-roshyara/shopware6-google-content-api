@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <parameters>
+        <!-- https://www.php.net/manual/en/faq.using.php#faq.using.shorthandbytes -->
+        <parameter key="pickware_erp.import_export.min_memory_requirement">512M</parameter>
+    </parameters>
+    <services>
+        <defaults public="true" />
+        <service id="Pickware\PickwareErpStarter\ImportExport\Controller\ImportExportController">
+            <argument>%pickware_erp.import_export.min_memory_requirement%</argument>
+            <argument type="service" id="Pickware\PickwareErpStarter\ImportExport\MemoryUtilsService" />
+            <argument type="service" id="Pickware\PickwareErpStarter\ImportExport\ImportExportService" />
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Search\RequestCriteriaBuilder" />
+            <argument
+                type="service"
+                id="Pickware\PickwareErpStarter\ImportExport\DependencyInjection\ExporterRegistry"
+            />
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+        </service>
+    </services>
+</container>

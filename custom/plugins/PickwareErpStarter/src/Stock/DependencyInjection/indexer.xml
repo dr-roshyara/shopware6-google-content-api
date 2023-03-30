@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="Pickware\PickwareErpStarter\Stock\Indexer\StockIndexer">
+            <argument id="Shopware\Core\Content\Product\ProductDefinition" type="service" />
+            <argument id="Shopware\Core\Framework\DataAbstractionLayer\Dbal\Common\IteratorFactory" type="service" />
+            <argument id="Pickware\PickwareErpStarter\Stock\ProductStockUpdater" type="service" />
+            <argument id="Pickware\PickwareErpStarter\Stock\ProductReservedStockUpdater" type="service" />
+            <argument id="Pickware\PickwareErpStarter\Stock\ProductAvailableUpdater" type="service" />
+            <argument id="Pickware\PickwareErpStarter\Stock\WarehouseStockInitializer" type="service" />
+            <tag name="shopware.entity_indexer" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Stock\Indexer\ProductSalesIndexer">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument id="Shopware\Core\Framework\DataAbstractionLayer\Dbal\Common\IteratorFactory" type="service" />
+            <argument id="Pickware\PickwareErpStarter\Stock\ProductSalesUpdater" type="service" />
+            <tag name="shopware.entity_indexer" />
+        </service>
+    </services>
+</container>

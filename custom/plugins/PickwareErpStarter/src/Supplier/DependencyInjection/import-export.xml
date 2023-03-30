@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <parameters>
+        <parameter key="pickware_erp.import_export_profiles.supplier.batch_size">50</parameter>
+        <parameter key="pickware_erp.import_export_profiles.product_supplier_configuration.batch_size">50</parameter>
+    </parameters>
+    <services>
+        <service id="Pickware\PickwareErpStarter\Supplier\ImportExportProfile\SupplierImportCsvRowNormalizer" />
+        <service id="Pickware\PickwareErpStarter\Supplier\ImportExportProfile\SupplierImporter">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument
+                id="Pickware\PickwareErpStarter\Supplier\ImportExportProfile\SupplierImportCsvRowNormalizer"
+                type="service"
+            />
+            <argument type="service" id="Pickware\PickwareErpStarter\ImportExport\ImportExportStateService" />
+            <argument
+                type="service"
+                id="Shopware\Core\System\NumberRange\ValueGenerator\NumberRangeValueGeneratorInterface"
+            />
+            <argument>%pickware_erp.import_export_profiles.supplier.batch_size%</argument>
+            <tag name="pickware_erp_starter.importer" profileTechnicalName="supplier" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Supplier\ImportExportProfile\SupplierExporter">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument id="Pickware\DalBundle\CriteriaJsonSerializer" type="service" />
+            <argument type="service" id="Pickware\PickwareErpStarter\Translation\Translator" />
+            <argument>%pickware_erp.import_export_profiles.supplier.batch_size%</argument>
+            <tag name="pickware_erp_starter.exporter" profileTechnicalName="supplier" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Supplier\ImportExportProfile\ProductSupplierConfigurationExporter">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument id="Pickware\DalBundle\CriteriaJsonSerializer" type="service" />
+            <argument type="service" id="Pickware\PickwareErpStarter\Translation\Translator" />
+            <argument type="service" id="Pickware\PickwareErpStarter\Product\ProductNameFormatterService" />
+            <argument>%pickware_erp.import_export_profiles.product_supplier_configuration.batch_size%</argument>
+            <tag name="pickware_erp_starter.exporter" profileTechnicalName="product-supplier-configuration" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Supplier\ImportExportProfile\ProductSupplierConfigurationImporter">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument
+                id="Pickware\PickwareErpStarter\Supplier\ImportExportProfile\ProductSupplierConfigurationImportCsvRowNormalizer"
+                type="service"
+            />
+            <argument type="service" id="Pickware\PickwareErpStarter\ImportExport\ImportExportStateService" />
+            <argument>%pickware_erp.import_export_profiles.product_supplier_configuration.batch_size%</argument>
+            <tag name="pickware_erp_starter.importer" profileTechnicalName="product-supplier-configuration" />
+        </service>
+        <service
+            id="Pickware\PickwareErpStarter\Supplier\ImportExportProfile\ProductSupplierConfigurationImportCsvRowNormalizer"
+        />
+    </services>
+</container>

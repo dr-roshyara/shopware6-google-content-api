@@ -1,0 +1,41 @@
+{% block sw_data_grid_bulk_selected_actions_content %}
+    {% parent() %}
+
+    {% block sw_data_grid_bulk_selected_actions_content_sync_wawision %}
+    <span v-if="showBulkSyncButton()"> | </span>
+    <a class="link link-danger" v-if="showBulkSyncButton()" @click="showBulkSyncModal = true">
+        {{ $tc('wawision-shopimporter.extension.bulkSync') }}
+    </a>
+    {% endblock %}
+
+{% endblock %}
+
+{% block sw_data_grid_slot_bulk_modals %}
+    {% parent() %}
+
+    {% block sw_data_grid_slot_bulk_sync_modals %}
+        <sw-modal v-if="showBulkSyncModal"
+                  @modal-close="showBulkSyncModal = false"
+                  :title="$tc('wawision-shopimporter.extension.syncTitle')"
+                  variant="small">
+            <p class="sw-data-grid__confirm-bulk-delete-text">
+                {{ $tc('wawision-shopimporter.extension.syncMessage', selectionCount, { count: selectionCount }) }}
+            </p>
+
+            <template #modal-footer>
+                <slot name="bulk-modal-cancel">
+                    <sw-button @click="showBulkSyncModal = false" size="small">
+                        {{ $tc('global.default.cancel') }}
+                    </sw-button>
+                </slot>
+
+                <slot name="bulk-modal-delete-items">
+                    <sw-button @click="syncItems" variant="primary" size="small" :isLoading="isBulkLoading">
+                        {{ $tc('wawision-shopimporter.extension.transfer') }}
+                    </sw-button>
+                </slot>
+            </template>
+        </sw-modal>
+    {% endblock %}
+
+{% endblock %}

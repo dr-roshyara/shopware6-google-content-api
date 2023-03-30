@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service
+            id="Pickware\PickwareErpStarter\DemandPlanning\AnalyticsProfile\Model\DemandPlanningListItemDefinition"
+        >
+            <tag name="shopware.entity.definition" />
+            <tag name="pickware_erp.analytics_report_list_item_definition" />
+        </service>
+        <service
+            id="Pickware\PickwareErpStarter\DemandPlanning\AnalyticsProfile\Model\Extension\DemandPlanningProductExtension"
+        >
+            <tag name="shopware.entity.extension" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\DemandPlanning\AnalyticsProfile\DemandPlanningAnalyticsAggregator">
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+            <argument
+                type="service"
+                id="Pickware\PickwareErpStarter\Analytics\DependencyInjection\AnalyticsAggregatorConfigFactoryRegistry"
+            />
+            <argument type="service" id="Doctrine\DBAL\Connection" />
+            <tag name="pickware_erp.analytics_aggregator" />
+        </service>
+        <service
+            id="Pickware\PickwareErpStarter\DemandPlanning\AnalyticsProfile\DemandPlanningAnalyticsReportListItemCalculator"
+        >
+            <argument type="service" id="Doctrine\DBAL\Connection" />
+            <tag name="pickware_erp.analytics_report_list_item_calculator" />
+        </service>
+        <service
+            id="Pickware\PickwareErpStarter\DemandPlanning\AnalyticsProfile\DemandPlanningAnalyticsAggregatorConfigFactory"
+        >
+            <tag name="pickware_erp.analytics_aggregator_config_factory" />
+        </service>
+        <service
+            id="Pickware\PickwareErpStarter\DemandPlanning\AnalyticsProfile\DemandPlanningAnalyticsReportConfigFactory"
+        >
+            <tag name="pickware_erp.analytics_report_config_factory" />
+        </service>
+    </services>
+</container>

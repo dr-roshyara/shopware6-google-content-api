@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="Pickware\PickwareErpStarter\Picking\WarehousePriorityComparator" />
+        <service
+            id="pickware.pickware_erp.default_warehouse_comparator"
+            alias="Pickware\PickwareErpStarter\Picking\WarehousePriorityComparator"
+        />
+        <service id="Pickware\PickwareErpStarter\Picking\AlphanumericalPickingStrategy">
+            <argument type="service" id="pickware.pickware_erp.default_warehouse_comparator" />
+        </service>
+        <service
+            id="pickware.pickware_erp.default_picking_strategy"
+            alias="Pickware\PickwareErpStarter\Picking\AlphanumericalPickingStrategy"
+        />
+        <service id="Pickware\PickwareErpStarter\Picking\AlphanumericalRoutingStrategy" />
+        <service
+            id="pickware.pickware_erp.default_routing_strategy"
+            alias="Pickware\PickwareErpStarter\Picking\AlphanumericalRoutingStrategy"
+        />
+        <service id="Pickware\PickwareErpStarter\Picking\PickingRequestService" public="true">
+            <argument type="service" id="Pickware\PickwareErpStarter\Picking\PickingRequestFactory" />
+            <argument type="service" id="Pickware\PickwareErpStarter\Picking\PickingRequestSolver" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Picking\PickingRequestFactory" public="true">
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Picking\PickingRequestSolver">
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+            <argument type="service" id="pickware.pickware_erp.default_picking_strategy" />
+            <argument type="service" id="pickware.pickware_erp.default_routing_strategy" />
+        </service>
+    </services>
+</container>

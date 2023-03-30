@@ -1,0 +1,61 @@
+{
+    "name": "pickware/installation-library",
+    "description": "A library with installers for Shopware 6 plugin installations",
+    "license": "proprietary",
+    "type": "library",
+    "version": "2.13.2",
+    "authors": [
+        {
+            "name": "Pickware",
+            "email": "info@pickware.de"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "doctrine/dbal": "^2.10.0",
+        "pickware/dal-bundle": "^3.20.0",
+        "psr/log": "^1.1.2 || ^2.0 || ^3.0",
+        "shopware/core": "6.4.* >= 6.4.5",
+        "symfony/polyfill-php80": "^1.22.1",
+        "symfony/yaml": "^5.2.3"
+    },
+    "require-dev": {
+        "mikey179/vfsstream": "^1.6",
+        "monolog/monolog": "^2.3.5",
+        "phpunit/phpunit": "^9.5.0"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../../bundles/*"
+        },
+        {
+            "type": "path",
+            "url": "../../../libraries/composer-packages/*"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Pickware\\InstallationLibrary\\": "src"
+        },
+        "exclude-from-classmap": [
+            "**.unit.php",
+            "**.integration.php"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "ergebnis/composer-normalize": true,
+            "viison/composer-git-hooks-installer-plugin": true
+        },
+        "lock": false
+    },
+    "extra": {
+        "ci-min-supported-shopware-version": "6.4.8.0"
+    },
+    "scripts": {
+        "test:integration": "${SHOPWARE_DIR}/vendor/bin/phpunit --config phpunit.integration.xml --testdox",
+        "test:unit": "./vendor/bin/phpunit --config phpunit.unit.xml --testdox"
+    }
+}

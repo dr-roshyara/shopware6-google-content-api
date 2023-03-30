@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <defaults public="true" />
+        <service id="pickware.debug_bundle.logger" class="Monolog\Logger">
+            <factory service="Shopware\Core\Framework\Log\LoggerFactory" method="createRotating" />
+            <argument type="string">pickware.debug_bundle</argument>
+        </service>
+        <service id="pickware.debug_bundle.sql_lock_logger" class="Pickware\DebugBundle\SqlLockLogger">
+            <argument id="Doctrine\DBAL\Connection" type="service" />
+            <argument type="string">%kernel.project_dir%</argument>
+        </service>
+        <service id="pickware.debug_bundle.error_logger" class="Monolog\Logger">
+            <factory service="Shopware\Core\Framework\Log\LoggerFactory" method="createRotating" />
+            <argument type="string">pickware.errors</argument>
+        </service>
+    </services>
+</container>

@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="Pickware\PickwareErpStarter\Stocktaking\StocktakingService">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument
+                id="Shopware\Core\System\NumberRange\ValueGenerator\NumberRangeValueGeneratorInterface"
+                type="service"
+            />
+            <argument type="service" id="Pickware\PickwareErpStarter\Stocktaking\StocktakingStockChangeService" />
+            <argument type="service" id="Pickware\PickwareErpStarter\Product\ProductNameFormatterService" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Stocktaking\StocktakingStockChangeService">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument type="service" id="Pickware\PickwareErpStarter\ImportExport\ImportExportScheduler" />
+            <argument type="service" id="Doctrine\DBAL\Connection" />
+        </service>
+    </services>
+</container>

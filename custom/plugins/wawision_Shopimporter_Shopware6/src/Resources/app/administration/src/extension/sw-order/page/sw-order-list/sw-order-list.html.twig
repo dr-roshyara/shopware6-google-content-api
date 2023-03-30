@@ -1,0 +1,48 @@
+{% block sw_order_list_grid_columns %}
+    {% parent() %}
+
+    {% block sw_order_list_grid_columns_wawision_order_state %}
+        <template slot="column-customFields.wawision_shopimporter_syncstate" slot-scope="{ item }">
+
+            {% block sw_order_list_grid_columns_wawision_order_state_uptodate %}
+            <sw-label v-if="hasSynced(item)"
+                      class="wawision-number__pill-label"
+                      variant="success"
+                      appearance="pill">
+                {{ $tc('wawision-shopimporter.extension.statusUptodate') }}
+            </sw-label>
+            {% endblock %}
+
+            {% block sw_order_list_grid_columns_wawision_order_state_unsynced %}
+            <sw-label v-else
+                      class="wawision-number__pill-label"
+                      variant="danger"
+                      appearance="pill">
+                {{ $tc('wawision-shopimporter.extension.statusUnsynced') }}
+            </sw-label>
+            {% endblock %}
+
+        </template>
+    {% endblock %}
+
+{% endblock %}
+
+{% block sw_order_list_grid_columns_actions_view %}
+    {% parent() %}
+
+    {% block sw_order_list_grid_columns_actions_view_wawision %}
+    <sw-context-menu-item class="sw-order-list__order-view-wawision-order-link"
+                          :disabled="!hasSynced(item)"
+                          @click="openOrderLink(item)">
+        {{ $tc('wawision-shopimporter.extension.openOrderInXentralButton') }}
+    </sw-context-menu-item>
+    {% endblock %}
+
+    {% block sw_order_list_grid_columns_actions_sync_order_to_wawision %}
+    <sw-context-menu-item class="sw-order-list__order-view-wawision-order-to-wawision"
+                          @click="onOrderToXentral(item)">
+        {{ $tc('wawision-shopimporter.extension.syncOrderToXentralButton') }}
+    </sw-context-menu-item>
+    {% endblock %}
+
+{% endblock %}

@@ -1,0 +1,13 @@
+.center {
+    text-align: center;
+}
+.image--flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 140px;
+        height: 140px;
+    }
+}

@@ -1,0 +1,180 @@
+@import "~scss/variables";
+
+.wawision-shopimporter-main-index {
+    .wawision-shopimporter-dashboard {
+        .wawision-shopimporter-dashboard__headline {
+            text-align: left;
+
+            h1 {
+                float: left;
+            }
+
+            .wawision-shopimporter-dashboard__headline__pill-label {
+                float: left;
+                margin-left: 15px;
+                margin-top: 5px;
+                color: #fff;
+                background: #26e2a0;
+
+                &.disconnected {
+                    background: #de294c;
+                }
+            }
+
+            .sw-button {
+                float: right;
+                border: unset;
+                background: unset;
+                line-height: 20px;
+                padding: 5px;
+
+                .sw-button__content {
+                    font-weight: 100;
+                }
+
+                .sw-icon {
+                    height: 18px;
+                    width: 18px;
+
+                    &.icon--default-action-circle-download svg {
+                        transform: rotate(270deg);
+                    }
+                }
+
+            }
+        }
+
+        .wawision-shopimporter-dashboard__status-loading {
+            margin-bottom: 0px;
+
+            .wawision-shopimporter-dashboard__status-loading-item__text {
+                text-align: left;
+                line-height: 24px;
+            }
+        }
+
+        .sw-progress-bar {
+            margin-bottom: 35px;
+        }
+
+        .wawision-shopimporter-dashboard__status-ready {
+            .wawision-shopimporter-dashboard__status-ready-item__text {
+                text-align: left;
+                line-height: 24px;
+                float: left;
+            }
+
+            .sw-button {
+                float: right;
+                border: unset;
+                background: unset;
+                padding: 0px;
+                line-height: 20px;
+                font-weight: 100;
+            }
+        }
+
+        .wawision-shopimporter-dashboard__status-loading,
+        .wawision-shopimporter-dashboard__status-ready {
+            .wawision-shopimporter-dashboard__status-loading-item__icon,
+            .wawision-shopimporter-dashboard__status-ready-item__icon {
+                display: flex;
+                flex-shrink: 0;
+                align-items: center;
+                justify-content: center;
+                height: 24px;
+                width: 24px;
+                border-radius: 50%;
+                margin-right: 20px;
+                float: left;
+
+                .sw-icon {
+                    height: 18px;
+                    width: 18px;
+                    float: left;
+                }
+            }
+        }
+
+        .wawision-shopimporter-dashboard__status-loading-item__icon.background--enabled {
+            background-color: #e6e7fc;
+        }
+
+        .wawision-shopimporter-dashboard__status-ready-item__icon.background--enabled {
+            background-color: #26e2a0;
+        }
+
+        .sw-card {
+            background-color: #fff;
+            width: 100%;
+
+            .sw-card__content {
+                padding: 15px;
+            }
+
+            .wawision-shopimporter-dashboard-statistics-headline,
+            .wawision-shopimporter-dashboard-overview-headline {
+                line-height: 48px;
+
+                .wawision-shopimporter-dashboard-statistics-headline-item__icon,
+                .wawision-shopimporter-dashboard-overview-headline-item__icon {
+                    display: flex;
+                    flex-shrink: 0;
+                    align-items: center;
+                    justify-content: center;
+                    height: 48px;
+                    width: 48px;
+                    border-radius: 50%;
+                    margin-right: 20px;
+                    float: left;
+                }
+
+                h1 {
+                    text-align: left;
+                }
+
+                .wawision-shopimporter-dashboard-statistics-headline-item__icon.background--enabled {
+                    background-color: #fbe9f7;
+                }
+
+                .wawision-shopimporter-dashboard-overview-headline-item__icon.background--enabled {
+                    background-color: #e6e7fc;
+                }
+            }
+
+            .sw-data-grid__cell-content {
+                font-size: 20px;
+            }
+
+            .dashboard-overview-content-column {
+                padding: 10px 30px;
+                font-size: 20px;
+
+                &:first-of-type {
+                    border-right: 1px solid #d1d9e0;
+                }
+
+                .text {
+                    float: left;
+                }
+
+                .number {
+                    float: right;
+                }
+            }
+        }
+
+        .wawision-shopimporter-dashboard-usecases {
+            .sw-button {
+                width: 100%;
+                padding: unset;
+                border-radius: 8px;
+
+                .wawision-button-img {
+                    width: 100%;
+                    border-radius: 6px;
+                }
+            }
+        }
+    }
+}

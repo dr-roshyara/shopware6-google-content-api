@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <parameters>
+        <parameter key="pickware_erp.import_export_profiles.bin_location.batch_size">50</parameter>
+    </parameters>
+    <services>
+        <service id="Pickware\PickwareErpStarter\Warehouse\Import\BinLocationImporter">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument
+                id="Pickware\PickwareErpStarter\Warehouse\Import\BinLocationImportCsvRowNormalizer"
+                type="service"
+            />
+            <argument type="service" id="Pickware\PickwareErpStarter\Warehouse\Import\BinLocationUpsertService" />
+            <argument type="service" id="Pickware\PickwareErpStarter\ImportExport\ImportExportStateService" />
+            <argument>%pickware_erp.import_export_profiles.bin_location.batch_size%</argument>
+            <tag name="pickware_erp_starter.importer" profileTechnicalName="bin-location" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Warehouse\Import\BinLocationExporter">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument id="Pickware\DalBundle\CriteriaJsonSerializer" type="service" />
+            <argument type="service" id="Pickware\PickwareErpStarter\Translation\Translator" />
+            <argument>%pickware_erp.import_export_profiles.bin_location.batch_size%</argument>
+            <tag name="pickware_erp_starter.exporter" profileTechnicalName="bin-location" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Warehouse\Import\BinLocationImportCsvRowNormalizer" />
+    </services>
+</container>

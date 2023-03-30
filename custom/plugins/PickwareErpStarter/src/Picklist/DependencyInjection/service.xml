@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="Pickware\PickwareErpStarter\Picklist\DocumentGenerator\PicklistDocumentGenerator">
+            <argument type="string">%kernel.project_dir%</argument>
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+            <argument type="service" id="Pickware\PickwareErpStarter\Picklist\PicklistGenerator" />
+            <argument type="service" id="Pickware\PickwareErpStarter\Picklist\PicklistCustomProductGenerator" />
+            <argument
+                type="service"
+                id="Pickware\PickwareErpStarter\Picklist\Renderer\PicklistDocumentContentGenerator"
+            />
+            <argument type="service" id="Shopware\Core\Checkout\Document\Twig\DocumentTemplateRenderer" />
+            <tag name="document.generator" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Picklist\Renderer\PicklistDocumentRenderer" public="true">
+            <argument type="string">%kernel.project_dir%</argument>
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+            <argument type="service" id="Pickware\PickwareErpStarter\Picklist\PicklistGenerator" />
+            <argument type="service" id="Pickware\PickwareErpStarter\Picklist\PicklistCustomProductGenerator" />
+            <argument type="service" id="Shopware\Core\Checkout\Document\Twig\DocumentTemplateRenderer" />
+            <argument
+                type="service"
+                id="Pickware\PickwareErpStarter\Picklist\Renderer\PicklistDocumentContentGenerator"
+            />
+            <argument
+                type="service"
+                id="Shopware\Core\System\NumberRange\ValueGenerator\NumberRangeValueGeneratorInterface"
+            />
+            <argument type="service" id="Doctrine\DBAL\Connection" />
+            <tag name="document.renderer" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Picklist\Renderer\PicklistDocumentContentGenerator">
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+        </service>
+        <service
+            id="Pickware\PickwareErpStarter\Picklist\PicklistCreationDocumentServiceDecorator"
+            decorates="Shopware\Core\Checkout\Document\DocumentService"
+        >
+            <argument
+                type="service"
+                id="Pickware\PickwareErpStarter\Picklist\PicklistCreationDocumentServiceDecorator.inner"
+            />
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Picklist\PicklistGenerator">
+            <argument type="service" id="Pickware\PickwareErpStarter\Picking\PickingRequestService" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Picklist\PicklistCustomProductGenerator" />
+    </services>
+</container>

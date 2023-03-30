@@ -1,0 +1,63 @@
+{% block sw_product_list_grid_columns_stock %}
+    {% parent() %}
+
+    {% block sw_product_list_grid_columns_wawision_product_state %}
+        <template slot="column-customFields.wawision_shopimporter_syncstate" slot-scope="{ item }">
+
+            {% block sw_product_list_grid_columns_wawision_product_state_uptodate %}
+            <sw-label v-if="hasSynced(item)"
+                      class="wawision-number__pill-label"
+                      variant="success"
+                      appearance="pill">
+                {{ $tc('wawision-shopimporter.extension.statusSynced') }}
+            </sw-label>
+            {% endblock %}
+
+            {% block sw_product_list_grid_columns_wawision_product_state_unsynced %}
+            <sw-label v-else
+                      class="wawision-number__pill-label"
+                      variant="danger"
+                      appearance="pill">
+                {{ $tc('wawision-shopimporter.extension.statusUnsynced') }}
+            </sw-label>
+            {% endblock %}
+
+        </template>
+    {% endblock %}
+{% endblock %}
+
+{% block sw_product_list_grid_columns_actions_duplicate %}
+{% parent() %}
+
+    {% block sw_product_list_grid_columns_actions_view_wawision %}
+    <sw-context-menu-item class="sw-product-list__product-view-wawision-product-link"
+                          :disabled="!hasSynced(item)"
+                          @click="openProductLink(item)">
+        {{ $tc('wawision-shopimporter.extension.openProductInXentralButton') }}
+    </sw-context-menu-item>
+    {% endblock %}
+
+    {% block sw_product_list_grid_columns_actions_sync_storage %}
+    <sw-context-menu-item class="sw-product-list__product-view-wawision-sync-storage"
+                          :disabled="!hasSynced(item)"
+                          @click="onSyncStorage(item)">
+        {{ $tc('wawision-shopimporter.extension.syncStorageToProductButton') }}
+    </sw-context-menu-item>
+    {% endblock %}
+
+    {% block sw_product_list_grid_columns_actions_sync_product_to_wawision %}
+    <sw-context-menu-item class="sw-product-list__product-view-wawision-product-to-wawision"
+                          @click="onArticleToXentral(item)">
+        {{ $tc('wawision-shopimporter.extension.syncProductToXentralButton') }}
+    </sw-context-menu-item>
+    {% endblock %}
+
+    {% block sw_product_list_grid_columns_actions_sync_wawision_to_product %}
+    <sw-context-menu-item class="sw-product-list__product-view-wawision-wawision-to-product"
+                          :disabled="!hasSynced(item)"
+                          @click="onArticleToShop(item)">
+        {{ $tc('wawision-shopimporter.extension.syncXentralToProductButton') }}
+    </sw-context-menu-item>
+    {% endblock %}
+
+{% endblock %}

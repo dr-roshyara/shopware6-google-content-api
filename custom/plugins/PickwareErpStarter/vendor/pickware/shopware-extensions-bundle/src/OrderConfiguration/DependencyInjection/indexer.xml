@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="Pickware\ShopwareExtensionsBundle\OrderConfiguration\OrderConfigurationIndexer">
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+            <argument id="Shopware\Core\Framework\DataAbstractionLayer\Dbal\Common\IteratorFactory" type="service" />
+            <argument
+                id="Pickware\ShopwareExtensionsBundle\OrderConfiguration\OrderConfigurationUpdater"
+                type="service"
+            />
+            <tag name="shopware.entity_indexer" />
+        </service>
+        <!-- Make the EntityIndexerRegistry public, so it can be used in the onAfterActivate of the bundle class -->
+        <service
+            id="pickware.pickware_shopware_extensions.entity_indexer_registry_public"
+            alias="Shopware\Core\Framework\DataAbstractionLayer\Indexing\EntityIndexerRegistry"
+            public="true"
+        />
+    </services>
+</container>

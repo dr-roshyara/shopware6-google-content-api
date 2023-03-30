@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="Pickware\PickwareErpStarter\BarcodeLabel\DataProvider\BarcodeLabelDataProviderRegistry">
+            <argument type="tagged" tag="pickware_erp_starter.barcode_label_data_provider" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\BarcodeLabel\DataProvider\BinLocationDataProvider">
+            <argument type="service" id="Pickware\PickwareErpStarter\BarcodeLabel\BarcodeLabelLayoutItemFactory" />
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+            <tag name="pickware_erp_starter.barcode_label_data_provider" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\BarcodeLabel\BarcodeLabelLayoutItemFactory" />
+        <service id="Pickware\PickwareErpStarter\BarcodeLabel\BarcodeLabelLayouts">
+            <argument type="service" id="Shopware\Core\Framework\Adapter\Twig\TemplateFinder" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\BarcodeLabel\BarcodeLabelRenderer">
+            <argument type="service" id="Pickware\PickwareErpStarter\BarcodeLabel\BarcodeLabelLayouts" />
+            <argument type="service" id="twig" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\BarcodeLabel\BarcodeLabelService">
+            <argument
+                type="service"
+                id="Pickware\PickwareErpStarter\BarcodeLabel\DataProvider\BarcodeLabelDataProviderRegistry"
+            />
+            <argument type="service" id="Pickware\PickwareErpStarter\BarcodeLabel\BarcodeLabelRenderer" />
+        </service>
+    </services>
+</container>

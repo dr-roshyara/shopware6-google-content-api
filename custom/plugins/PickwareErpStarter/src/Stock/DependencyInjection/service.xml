@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="Pickware\PickwareErpStarter\Stock\OrderStockInitializer" public="true">
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+            <argument type="service" id="Pickware\PickwareErpStarter\StockApi\StockMovementService" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Stock\ProductReservedStockUpdater">
+            <argument id="Doctrine\DBAL\Connection" type="service" />
+            <argument id="event_dispatcher" type="service" />
+            <argument id="Pickware\DalBundle\DatabaseBulkInsertService" type="service" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Stock\ProductAvailableUpdater">
+            <argument id="Doctrine\DBAL\Connection" type="service" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Stock\ProductStockUpdater">
+            <argument id="Doctrine\DBAL\Connection" type="service" />
+            <argument id="event_dispatcher" type="service" />
+            <argument id="Pickware\PickwareErpStarter\Stock\WarehouseStockUpdater" type="service" />
+            <argument id="Shopware\Core\Content\Product\DataAbstractionLayer\ProductStreamUpdater" type="service" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Stock\WarehouseStockInitializer">
+            <argument id="Doctrine\DBAL\Connection" type="service" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Stock\WarehouseStockUpdater">
+            <argument id="Doctrine\DBAL\Connection" type="service" />
+            <argument id="event_dispatcher" type="service" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+    </services>
+</container>

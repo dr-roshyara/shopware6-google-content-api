@@ -1,0 +1,66 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <parameters>
+        <parameter key="pickware_erp.import_export.csv_to_database_reader.batch_size">1000</parameter>
+        <parameter key="pickware_erp.import_export.jsonl_to_database_reader.batch_size">1000</parameter>
+        <parameter key="pickware_erp.import_export.database_to_csv_writer.batch_size">1000</parameter>
+    </parameters>
+    <services>
+        <service id="pickware_erp_starter.import_export.message_bus" alias="messenger.bus.shopware" />
+        <service id="Pickware\PickwareErpStarter\ImportExport\ImportExportService" public="true">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument id="Pickware\DocumentBundle\DocumentContentsService" type="service" />
+            <argument id="Pickware\PickwareErpStarter\ImportExport\ImportExportScheduler" type="service" />
+            <argument id="Pickware\PickwareErpStarter\ImportExport\ImportExportStateService" type="service" />
+            <argument
+                type="service"
+                id="Pickware\PickwareErpStarter\ImportExport\DependencyInjection\ImporterRegistry"
+            />
+            <argument
+                type="service"
+                id="Pickware\PickwareErpStarter\ImportExport\DependencyInjection\ExporterRegistry"
+            />
+        </service>
+        <service id="Pickware\PickwareErpStarter\ImportExport\ImportExportScheduler">
+            <argument id="pickware_erp_starter.import_export.message_bus" type="service" />
+            <argument
+                id="Pickware\PickwareErpStarter\ImportExport\ImportExportSchedulerMessageHandler"
+                type="service"
+            />
+            <argument id="Pickware\PickwareErpStarter\ImportExport\ImportExportStateService" type="service" />
+            <tag name="messenger.message_handler" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\ImportExport\ImportExportSchedulerMessageHandler">
+            <argument id="Pickware\PickwareErpStarter\ImportExport\ImportExportStateService" type="service" />
+            <argument id="Pickware\PickwareErpStarter\ImportExport\ReadWrite\Csv\DatabaseToCsvWriter" type="service" />
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument id="Doctrine\DBAL\Connection" type="service" />
+            <argument
+                type="service"
+                id="Pickware\PickwareErpStarter\ImportExport\DependencyInjection\ImporterRegistry"
+            />
+            <argument
+                type="service"
+                id="Pickware\PickwareErpStarter\ImportExport\DependencyInjection\ExporterRegistry"
+            />
+            <argument
+                type="service"
+                id="Pickware\PickwareErpStarter\ImportExport\ReadWrite\DependencyInjection\ImportExportReaderRegistry"
+            />
+        </service>
+        <service id="Pickware\PickwareErpStarter\ImportExport\ImportExportStateService">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument id="event_dispatcher" type="service" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\ImportExport\MemoryUtilsService" />
+        <service id="Franzose\DoctrineBulkInsert\Query" public="true">
+            <argument id="Doctrine\DBAL\Connection" type="service" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\ImportExport\DependencyInjection\ImporterRegistry" />
+        <service id="Pickware\PickwareErpStarter\ImportExport\DependencyInjection\ExporterRegistry" />
+    </services>
+</container>

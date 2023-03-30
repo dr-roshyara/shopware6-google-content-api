@@ -1,0 +1,23 @@
+{% block sw_dashboard_index_content_intro_card %}
+    {% parent() %}
+
+    {% block sw_dashboard_index_content_wawision_card %}
+    <sw-card>
+
+        {% block sw_dashboard_index_content_wawision_headline_title %}
+        <h1>Xentral</h1>
+        {% endblock %}
+
+        {% block sw_dashboard_index_content_wawision_chart_example %}
+        <sw-chart :type="'line'"
+                  :fillEmptyDates="true"
+                  :sort="true"
+                  :series="series"
+                  :options="options">
+        </sw-chart>
+        {% endblock %}
+
+    </sw-card>
+    {% endblock %}
+{% endblock %}
+

@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="Pickware\PickwareErpStarter\OrderCalculation\OrderDifferenceCalculator" public="true">
+            <argument type="service" id="Pickware\PickwareErpStarter\OrderCalculation\OrderCalculationService" />
+            <argument type="service" id="Pickware\PickwareErpStarter\OrderCalculation\CalculatableOrderFactory" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\OrderCalculation\OrderCalculationService" public="true">
+            <argument type="service" id="Pickware\PickwareErpStarter\OrderCalculation\PriceTotalCalculator" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\OrderCalculation\CalculatableOrderFactory" public="true">
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\OrderCalculation\PriceTotalCalculator" public="true" />
+    </services>
+</container>

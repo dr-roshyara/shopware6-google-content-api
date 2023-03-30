@@ -1,0 +1,30 @@
+@import "~scss/variables";
+
+.wawision-shopimporter-modal__welcome {
+    align-self: flex-start;
+
+    .center {
+        text-align: center;
+    }
+
+    img {
+        width: 150px;
+    }
+
+    .headline-welcome {
+        font-size: 32px;
+        font-weight: normal;
+        text-align: center;
+        letter-spacing: 0.2px;
+        line-height: 45px;
+    }
+
+    .text-welcome {
+        width: 675px;
+        font-size: 14px;
+        font-weight: normal;
+        text-align: center;
+        letter-spacing: 0.1px;
+        margin: 0 auto 30px auto;
+    }
+}

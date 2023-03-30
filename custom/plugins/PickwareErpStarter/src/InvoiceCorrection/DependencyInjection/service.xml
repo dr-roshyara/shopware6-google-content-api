@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="Pickware\PickwareErpStarter\InvoiceCorrection\InvoiceCorrectionCalculator" public="true">
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+            <argument type="service" id="Pickware\PickwareErpStarter\OrderCalculation\OrderDifferenceCalculator" />
+            <argument type="service" id="Pickware\PickwareErpStarter\OrderCalculation\CalculatableOrderFactory" />
+            <argument type="service" id="Pickware\PickwareErpStarter\OrderCalculation\OrderCalculationService" />
+        </service>
+        <service
+            id="Pickware\PickwareErpStarter\InvoiceCorrection\InvoiceCorrectionDocumentConfigurationValidatingDocumentServiceDecorator"
+            decorates="Shopware\Core\Checkout\Document\DocumentService"
+            public="true"
+        >
+            <argument
+                type="service"
+                id="Pickware\PickwareErpStarter\InvoiceCorrection\InvoiceCorrectionDocumentConfigurationValidatingDocumentServiceDecorator.inner"
+            />
+            <argument type="service" id="Pickware\PickwareErpStarter\InvoiceStack\InvoiceStackService" />
+            <argument type="service" id="Pickware\PickwareErpStarter\InvoiceCorrection\InvoiceCorrectionCalculator" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\InvoiceCorrection\InvoiceCorrectionDocumentGenerator" public="true">
+            <argument type="string">%kernel.project_dir%</argument>
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+            <argument type="service" id="Pickware\PickwareErpStarter\InvoiceCorrection\InvoiceCorrectionCalculator" />
+            <argument type="service" id="Shopware\Core\Checkout\Document\Twig\DocumentTemplateRenderer" />
+            <tag name="document.generator" />
+        </service>
+        <service
+            id="Pickware\PickwareErpStarter\InvoiceCorrection\StornoDocumentConfigurationValidatingDocumentServiceDecorator"
+            decorates="Shopware\Core\Checkout\Document\DocumentService"
+            public="true"
+        >
+            <argument
+                type="service"
+                id="Pickware\PickwareErpStarter\InvoiceCorrection\StornoDocumentConfigurationValidatingDocumentServiceDecorator.inner"
+            />
+            <argument type="service" id="Pickware\PickwareErpStarter\InvoiceStack\InvoiceStackService" />
+        </service>
+    </services>
+</container>

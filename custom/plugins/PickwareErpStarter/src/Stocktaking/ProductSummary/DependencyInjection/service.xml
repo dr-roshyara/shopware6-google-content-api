@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="Pickware\PickwareErpStarter\Stocktaking\ProductSummary\StocktakeProductSummaryUpdater">
+            <argument type="service" id="Doctrine\DBAL\Connection" />
+            <argument
+                type="service"
+                id="Pickware\PickwareErpStarter\Stocktaking\ProductSummary\StocktakeProductSummaryCalculator"
+            />
+            <tag name="kernel.event_subscriber" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Stocktaking\ProductSummary\StocktakeProductSummaryCalculator">
+            <argument type="service" id="Doctrine\DBAL\Connection" />
+        </service>
+    </services>
+</container>

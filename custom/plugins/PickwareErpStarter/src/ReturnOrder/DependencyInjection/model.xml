@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <!-- Definitions -->
+        <service id="Pickware\PickwareErpStarter\ReturnOrder\Model\ReturnOrderDefinition">
+            <tag name="shopware.entity.definition" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\ReturnOrder\Model\ReturnOrderLineItemDefinition">
+            <tag name="shopware.entity.definition" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\ReturnOrder\Model\ReturnOrderRefundDefinition">
+            <tag name="shopware.entity.definition" />
+        </service>
+        <!-- Extensions -->
+        <service id="Pickware\PickwareErpStarter\ReturnOrder\Model\ModelExtensions\ReturnOrderOrderExtension">
+            <tag name="shopware.entity.extension" />
+        </service>
+        <service
+            id="Pickware\PickwareErpStarter\ReturnOrder\Model\ModelExtensions\ReturnOrderStateMachineStateExtension"
+        >
+            <tag name="shopware.entity.extension" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\ReturnOrder\Model\ModelExtensions\ReturnOrderUserExtension">
+            <tag name="shopware.entity.extension" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\ReturnOrder\Model\ModelExtensions\ReturnOrderOrderLineItemExtension">
+            <tag name="shopware.entity.extension" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\ReturnOrder\Model\ModelExtensions\ReturnOrderProductExtension">
+            <tag name="shopware.entity.extension" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\ReturnOrder\Model\ModelExtensions\ReturnOrderPaymentMethodExtension">
+            <tag name="shopware.entity.extension" />
+        </service>
+    </services>
+</container>

@@ -1,0 +1,92 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <parameters>
+        <parameter key="pickware_erp.import_export_profiles.absolute_stock.batch_size">50</parameter>
+        <parameter key="pickware_erp.import_export_profiles.relative_stock_change.batch_size">50</parameter>
+        <parameter key="pickware_erp.import_export_profiles.stock_per_product.batch_size">50</parameter>
+        <parameter key="pickware_erp.import_export_profiles.stock_per_stock_location.batch_size">50</parameter>
+        <parameter key="pickware_erp.import_export_profiles.stock_per_warehouse.batch_size">50</parameter>
+    </parameters>
+    <services>
+        <service id="Pickware\PickwareErpStarter\Stock\ImportExportProfile\StockImportCsvRowNormalizer" />
+        <!-- AbsoluteStock -->
+        <service id="Pickware\PickwareErpStarter\Stock\ImportExportProfile\AbsoluteStock\AbsoluteStockImporter">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument id="Pickware\PickwareErpStarter\StockApi\StockMovementService" type="service" />
+            <argument
+                id="Pickware\PickwareErpStarter\Stock\ImportExportProfile\StockImportCsvRowNormalizer"
+                type="service"
+            />
+            <argument type="service" id="Pickware\PickwareErpStarter\StockApi\StockLocationReferenceFinder" />
+            <argument type="service" id="Pickware\PickwareErpStarter\ImportExport\ImportExportStateService" />
+            <argument type="service" id="Pickware\PickwareErpStarter\Picking\PickingRequestSolver" />
+            <argument type="service" id="pickware_erp_starter.stocking.default_stocking_strategy" />
+            <argument
+                type="service"
+                id="Pickware\PickwareErpStarter\Stock\ImportExportProfile\AbsoluteStock\AbsoluteStockChangeCalculator"
+            />
+            <argument>%pickware_erp.import_export_profiles.absolute_stock.batch_size%</argument>
+            <tag name="pickware_erp_starter.importer" profileTechnicalName="absolute-stock" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Stock\ImportExportProfile\AbsoluteStock\AbsoluteStockChangeCalculator">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+        </service>
+        <!-- RelativeStockChange -->
+        <service
+            id="Pickware\PickwareErpStarter\Stock\ImportExportProfile\RelativeStockChange\RelativeStockChangeImporter"
+        >
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument id="Pickware\PickwareErpStarter\StockApi\StockMovementService" type="service" />
+            <argument
+                id="Pickware\PickwareErpStarter\Stock\ImportExportProfile\StockImportCsvRowNormalizer"
+                type="service"
+            />
+            <argument type="service" id="Pickware\PickwareErpStarter\StockApi\StockLocationReferenceFinder" />
+            <argument type="service" id="Pickware\PickwareErpStarter\ImportExport\ImportExportStateService" />
+            <argument type="service" id="Pickware\PickwareErpStarter\Picking\PickingRequestSolver" />
+            <argument type="service" id="pickware_erp_starter.stocking.default_stocking_strategy" />
+            <argument
+                type="service"
+                id="Pickware\PickwareErpStarter\Stock\ImportExportProfile\RelativeStockChange\RelativeStockChangeCalculator"
+            />
+            <argument>%pickware_erp.import_export_profiles.relative_stock_change.batch_size%</argument>
+            <tag name="pickware_erp_starter.importer" profileTechnicalName="relative-stock-change" />
+        </service>
+        <service
+            id="Pickware\PickwareErpStarter\Stock\ImportExportProfile\RelativeStockChange\RelativeStockChangeCalculator"
+        />
+        <!-- StockPerProduct -->
+        <service id="Pickware\PickwareErpStarter\Stock\ImportExportProfile\StockPerProduct\StockPerProductExporter">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument id="Pickware\DalBundle\CriteriaJsonSerializer" type="service" />
+            <argument type="service" id="Pickware\PickwareErpStarter\Translation\Translator" />
+            <argument type="service" id="Pickware\PickwareErpStarter\Product\ProductNameFormatterService" />
+            <argument>%pickware_erp.import_export_profiles.stock_per_product.batch_size%</argument>
+            <tag name="pickware_erp_starter.exporter" profileTechnicalName="stock-per-product" />
+        </service>
+        <!-- StockPerStockLocation -->
+        <service
+            id="Pickware\PickwareErpStarter\Stock\ImportExportProfile\StockPerStockLocation\StockPerStockLocationExporter"
+        >
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument id="Pickware\DalBundle\CriteriaJsonSerializer" type="service" />
+            <argument type="service" id="Pickware\PickwareErpStarter\Translation\Translator" />
+            <argument type="service" id="Pickware\PickwareErpStarter\Product\ProductNameFormatterService" />
+            <argument>%pickware_erp.import_export_profiles.stock_per_stock_location.batch_size%</argument>
+            <tag name="pickware_erp_starter.exporter" profileTechnicalName="stock-per-stock-location" />
+        </service>
+        <!-- StockPerWarehouse -->
+        <service id="Pickware\PickwareErpStarter\Stock\ImportExportProfile\StockPerWarehouse\StockPerWarehouseExporter">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument id="Pickware\DalBundle\CriteriaJsonSerializer" type="service" />
+            <argument type="service" id="Pickware\PickwareErpStarter\Translation\Translator" />
+            <argument type="service" id="Pickware\PickwareErpStarter\Product\ProductNameFormatterService" />
+            <argument>%pickware_erp.import_export_profiles.stock_per_warehouse.batch_size%</argument>
+            <tag name="pickware_erp_starter.exporter" profileTechnicalName="stock-per-warehouse" />
+        </service>
+    </services>
+</container>

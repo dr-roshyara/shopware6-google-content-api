@@ -1,0 +1,193 @@
+{% sw_extends '@Shopware/documents/base.html.twig' %}
+
+{% use '@Framework/documents/includes/logo.html.twig' %}
+{% use '@Framework/documents/includes/letter_header.html.twig' %}
+
+{% block document_title_tag %}
+    {{ 'pickware-erp-starter.picklist-document.title' | trans | sw_sanitize }} {{ order.orderNumber }}
+{% endblock %}
+
+{% block document_base %}
+    {% include '@PickwareErpStarter/documents/picklist.css.twig' %}
+    {{ parent() }}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{# right side document head #}
+{% block document_side_info_date %}
+    <tr class="right-side-info-sales-channel">
+        <td>
+            {{ 'pickware-erp-starter.picklist-document.header.sales-channel'|trans({'%salesChannel%': order.salesChannel.name})|sw_sanitize }}
+        </td>
+    </tr>
+    <tr class="right-side-info-date">
+        <td>
+            {{ 'document.date'|trans({'%date%': config.documentDate|format_date('medium', locale=locale)})|sw_sanitize }}
+        </td>
+    </tr>
+{% endblock %}
+
+{# left side document head #}
+{% block document_recipient %}
+    {% set firstDelivery = order.deliveries|first %}
+    {% set shippingAddress = order.addresses.get(firstDelivery.shippingOrderAddressId) %}
+    {% set billingAddress = order.addresses.get(order.billingAddressId) %}
+
+    <table class="addresses-table">
+        <tr>
+            <td class="shipping-address">
+                <div class="address-title">
+                    {{ 'pickware-erp-starter.picklist-document.header.shipping-address'| trans | sw_sanitize }}
+                </div>
+                {% if shippingAddress.company %}{{ shippingAddress.company }}<br>{% endif %}
+                {{ shippingAddress.salutation.displayName }} {{ shippingAddress.firstName }} {{ shippingAddress.lastName }}<br>
+                {{ shippingAddress.street }}<br>
+                {{ shippingAddress.zipcode }} {{ shippingAddress.city }}<br>
+                {{ shippingAddress.country.name }}<br>
+            </td>
+            <td class="billing-address">
+                <div class="address-title">
+                    {{ 'pickware-erp-starter.picklist-document.header.billing-address'| trans | sw_sanitize }}
+                </div>
+                {% if billingAddress.company %}{{ billingAddress.company }}<br>{% endif %}
+                {{ billingAddress.salutation.displayName }} {{ billingAddress.firstName }} {{ billingAddress.lastName }}<br>
+                {{ billingAddress.street }}<br>
+                {{ billingAddress.zipcode }} {{ billingAddress.city }}<br>
+                {{ billingAddress.country.name }}<br>
+            </td>
+        </tr>
+    </table>
+{% endblock %}
+
+{# By overwriting the whole document_body we ignore Shopware's position loop, summary, comment payment_shipping
+   and shipping_address #}
+{% block document_body %}
+    {{ block('logo') }}
+    {{ block('letter_header') }}
+
+    {# Removes the company configuration (company address etc) from the letter_header block #}
+    {% block document_sender_address %}
+    {% endblock %}
+
+    {# document headline is hardcoded since the headline block of the base template is in the first table (which is
+       completely overwritten in this document_body block) #}
+    <div class="document-title-container">
+        <h1>
+            {{ 'pickware-erp-starter.picklist-document.title' | trans | sw_sanitize }}
+            <span class="title-ordernumber">{{ order.orderNumber }}</span>
+        </h1>
+        <h2>
+            {{ 'pickware-erp-starter.picklist-document.sub-title' | trans | sw_sanitize }}
+            <span class="bold">{{ 'pickware-erp-starter.picklist-document.warehouse-label' | trans({'%warehouseName%': warehouse.name, '%warehouseCode%': warehouse.code}) | sw_sanitize }}</span>
+        </h2>
+    </div>
+
+    {% if pickingRouteNodes | length !== 0 %}
+
+    {# Check if any route has multiple bin locations in its route (on this page) #}
+    {% set alterantiveBinLocationsExist = false %}
+    {% for pickingRouteNode in pickingRouteNodes %}
+        {% if pickingRouteNode.stocks | length > 1 %}
+            {% set alterantiveBinLocationsExist = true %}
+        {% endif %}
+    {% endfor %}
+
+    <div class="line-item-container">
+        <table class="line-item-table">
+            <thead>
+            <tr class="line-item-table-header">
+                <th style="width: 30%" class="first-column">
+                    {{ 'pickware-erp-starter.picklist-document.columns.bin-location' | trans | sw_sanitize }}
+                    {% if alterantiveBinLocationsExist %}
+                        <br>
+                        {{ 'pickware-erp-starter.picklist-document.columns.alternative' | trans | sw_sanitize }}
+                    {% endif %}
+                </th>
+                <th style="width: 20%">{{ 'pickware-erp-starter.picklist-document.columns.product-number' | trans | sw_sanitize }}</th>
+                <th style="width: 35%">{{ 'pickware-erp-starter.picklist-document.columns.product-name' | trans | sw_sanitize }}</th>
+                <th style="width: 10%" class="align-right quantity-cell">{{ 'pickware-erp-starter.picklist-document.columns.quantity' | trans | sw_sanitize }}</th>
+                <th style="width: 5%" class="align-right">{{ 'pickware-erp-starter.picklist-document.columns.picked' | trans | sw_sanitize }}</th>
+            </tr>
+            </thead>
+
+            {% for pickingRouteNode in pickingRouteNodes %}
+                {% if pickingRouteNode.orderLineItem.product is not null %}
+                    {% set productName = pickingRouteNode.orderLineItem.product.id | pickware_erp_product_name({ optionsTemplate: "<br /> <span class=\"variant-description\">{{ options | join(', ') }}</span>" }) | sw_sanitize %}
+                    {% set productNumber = pickingRouteNode.orderLineItem.product.productNumber | sw_sanitize %}
+                {% elseif pickingRouteNode.orderLineItem.payload['productNumber'].length >= 1 %}
+                    {% set productName = pickingRouteNode.orderLineItem.label | sw_sanitize %}
+                    {% set productNumber = pickingRouteNode.orderLineItem.payload['productNumber'] | sw_sanitize %}
+                {% else %}
+                    {% set productName = pickingRouteNode.orderLineItem.label | sw_sanitize %}
+                    {% set productNumber = '' %}
+                {% endif %}
+
+                {% if pickingRouteNode.stocks | length == 0 %}
+                    {# No stock locations are listed. Show a single 'unknown' location. #}
+                    <tr class="line-item single-stock-location">
+                        <td class="first-column left-bordered">{{ 'pickware-erp-starter.picklist-document.unknown' | trans | sw_sanitize }}</td>
+                        <td class="line-item-breakable">{{ productNumber }}</td>
+                        <td class="line-item-breakable">{{ productName | raw }}</td>
+                        <td class="align-right bold larger quantity-cell">{{ pickingRouteNode.quantity }}</td>
+                        <td class="picked-cell"></td>
+                    </tr>
+                    {% sw_include '@Framework/documents/components/picklist_custom_products.html.twig' with {
+                        customProducts: customProducts,
+                        lineItem: pickingRouteNode.orderLineItem
+                    } %}
+                {% else %}
+                    {# Show the main stock location with optional alternative locations #}
+                    <tr class="line-item {% if pickingRouteNode.stocks | length == 1 %}single-stock-location{% else %}main-stock-location{% endif %}">
+                        <td class="bold larger first-column left-bordered">{{ pickingRouteNode.stocks | first .binLocation.code | sw_sanitize }}</td>
+                        <td class="line-item-breakable">{{ productNumber }}</td>
+                        <td class="line-item-breakable">{{ productName | raw }}</td>
+                        <td class="align-right bold larger quantity-cell">{{ pickingRouteNode.quantity }}</td>
+                        <td class="picked-cell"></td>
+                    </tr>
+                    {% sw_include '@Framework/documents/components/picklist_custom_products.html.twig' with {
+                        customProducts: customProducts,
+                        lineItem: pickingRouteNode.orderLineItem
+                    } %}
+                    {% if pickingRouteNode.stocks | length > 1 %}
+                        <tr class="line-item alternative-stock-locations">
+                            <td colspan=4 class="first-column left-bordered">
+                                {% for stock in pickingRouteNode.stocks %}
+                                    {% if loop.first == false%}
+                                        {{ stock.binLocation.code }}{% if loop.last == false %},{% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td class="picked-cell"></td>
+                        </tr>
+                    {% endif %}
+                {% endif %}
+
+            {% endfor %}
+        </table>
+    </div>
+
+    {% else %}
+    <div class="line-item-container">
+        <p id="emptyList">
+            {{ 'pickware-erp-starter.picklist-document.empty-list' | trans | sw_sanitize }}
+        </p>
+    </div>
+
+    {% endif %}
+
+    {% if order.customerComment is not empty %}
+        <p id="customerComment">
+            <b>{{ 'pickware-erp-starter.picklist-document.customer-comment' | trans | sw_sanitize }}:</b>
+            {{ order.customerComment | sw_sanitize }}
+        </p>
+    {% endif %}
+
+    {% if config.documentComment is not empty %}
+        <p id="documentComment">
+            <b>{{ 'pickware-erp-starter.picklist-document.document-comment' | trans | sw_sanitize }}:</b>
+            {{ config.documentComment | sw_sanitize }}
+        </p>
+    {% endif %}
+{% endblock %}

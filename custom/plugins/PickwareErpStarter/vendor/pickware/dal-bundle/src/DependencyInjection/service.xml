@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="Pickware\DalBundle\DefaultTranslationProvider" public="true">
+            <argument id="service_container" type="service" />
+            <argument id="Doctrine\DBAL\Connection" type="service" />
+        </service>
+        <service id="Pickware\DalBundle\EntityManager" public="true">
+            <argument id="service_container" type="service" />
+            <argument id="Doctrine\DBAL\Connection" type="service" />
+            <argument id="Shopware\Core\Framework\DataAbstractionLayer\Dbal\CriteriaQueryBuilder" type="service" />
+            <argument id="Pickware\DalBundle\DefaultTranslationProvider" type="service" />
+        </service>
+        <service id="Pickware\DalBundle\ContextFactory">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+        </service>
+        <service id="Pickware\DalBundle\DalPayloadSerializer" />
+        <service id="Pickware\DalBundle\CriteriaFactory">
+            <argument id="Pickware\DalBundle\CriteriaJsonSerializer" type="service" />
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+        </service>
+        <service id="Pickware\DalBundle\CriteriaJsonSerializer">
+            <!-- We need to use the specific id of the service here because this version of the service does not use the
+            shopware.api.max_limit which we dont want to use while the one generated from the class name does use it -->
+            <argument id="api.request_criteria_builder" type="service" />
+            <argument
+                type="service"
+                id="Shopware\Core\Framework\DataAbstractionLayer\Search\Parser\AggregationParser"
+            />
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+        </service>
+        <service id="Pickware\DalBundle\EntityIdResolver" public="true">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+        </service>
+        <service id="Pickware\DalBundle\TechnicalNameToIdConverter">
+            <argument id="Pickware\DalBundle\EntityIdResolver" type="service" />
+        </service>
+        <service id="Pickware\DalBundle\EntityResponseService">
+            <argument id="Pickware\DalBundle\CriteriaFactory" type="service" />
+            <argument id="Shopware\Core\Framework\Api\Response\ResponseFactoryRegistry" type="service" />
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument id="request_stack" type="service" />
+        </service>
+        <service id="Pickware\DalBundle\DatabaseBulkInsertService" public="true">
+            <argument id="Doctrine\DBAL\Connection" type="service" />
+        </service>
+    </services>
+</container>

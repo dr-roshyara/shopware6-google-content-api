@@ -1,0 +1,4 @@
+# config/packages/shopware.yaml
+shopware: 
+    admin_worker:
+        enable_admin_worker: false

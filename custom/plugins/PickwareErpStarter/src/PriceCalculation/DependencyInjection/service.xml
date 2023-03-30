@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="Pickware\PickwareErpStarter\PriceCalculation\CartPriceCalculator" public="true">
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\CashRounding" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\PriceCalculation\OrderRecalculationService" public="true">
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+            <argument type="service" id="Pickware\PickwareErpStarter\PriceCalculation\PriceCalculator" />
+            <argument type="service" id="Pickware\PickwareErpStarter\PriceCalculation\CartPriceCalculator" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\PriceCalculation\QuantityPriceCalculator" public="true">
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\GrossPriceCalculator" />
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\NetPriceCalculator" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\PriceCalculation\PriceCalculator" public="true">
+            <argument type="service" id="Pickware\PickwareErpStarter\PriceCalculation\QuantityPriceCalculator" />
+        </service>
+    </services>
+</container>

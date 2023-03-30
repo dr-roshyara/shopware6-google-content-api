@@ -1,0 +1,19 @@
+{
+  "name": "roshyara/google-content-api",
+  "description": "Google Content Api",
+  "type": "shopware-platform-plugin",
+  "version": "0.0.1",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Roshyara\\GoogleContentApi\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "Roshyara\\GoogleContentApi\\RoshyaraGoogleContentApi",
+    "label": {
+      "de-DE": "Google Content Api plugin",
+      "en-GB": "Google Content Api plugin"
+    }
+  }
+}

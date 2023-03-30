@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/main.js">
+<testcase time="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/main.js" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/component/sw-extension-buy-modal/index.js">
+<testcase time="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/component/sw-extension-buy-modal/index.js" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/component/sw-extension-listing-card/index.js">
+<testcase time="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/component/sw-extension-listing-card/index.js" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/component/sw-extension-store-error-card/index.js">
+<testcase time="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/component/sw-extension-store-error-card/index.js" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/component/sw-extension-store-label-display/index.js">
+<testcase time="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/component/sw-extension-store-label-display/index.js" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/component/sw-extension-store-label/index.js">
+<testcase time="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/component/sw-extension-store-label/index.js" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/component/sw-extension-store-listing-banner/index.js">
+<testcase time="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/component/sw-extension-store-listing-banner/index.js" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/component/sw-extension-store-listing-filter/index.js">
+<testcase time="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/component/sw-extension-store-listing-filter/index.js" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/component/sw-extension-store-slider/index.js">
+<testcase time="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/component/sw-extension-store-slider/index.js" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/component/sw-extension-store-type-label/index.js">
+<testcase time="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/component/sw-extension-store-type-label/index.js" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/component/sw-extension-store-update-warning/index.js">
+<testcase time="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/component/sw-extension-store-update-warning/index.js" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/index.js">
+<testcase time="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/index.js" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/page/sw-extension-store-detail/index.js">
+<testcase time="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/page/sw-extension-store-detail/index.js" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/page/sw-extension-store-index/index.js">
+<testcase time="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/page/sw-extension-store-index/index.js" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/page/sw-extension-store-listing/index.js">
+<testcase time="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/page/sw-extension-store-listing/index.js" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/service/extension-store-data.service.js">
+<testcase time="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/service/extension-store-data.service.js" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/service/extension-store-licenses.service.js">
+<testcase time="0" name="/builds/shopware/6/product/SwagExtensionStore/custom/plugins/SwagExtensionStore/src/Resources/app/administration/src/module/sw-extension-store/service/extension-store-licenses.service.js" />
+</testsuite>
+</testsuites>

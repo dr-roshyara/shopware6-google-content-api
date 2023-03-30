@@ -1,0 +1,19 @@
+{% block wawision_shopimporter_wizard_callback %}
+<div class="wawision-shopimporter-modal__callback">
+    <div class="center">
+        <sw-icon name="default-tools-tools" color="#c0392b"></sw-icon>
+        <h4 class="headline-callback">{{ $tc('wawision-shopimporter.modal.callbackHeadline') }}</h4>
+        <p v-html="$tc('wawision-shopimporter.modal.callbackDescription')"
+           class="text-callback">
+        </p>
+    </div>
+
+    {% block wawision_shopimporter_modal_errortext %}
+    <sw-alert v-if="error"
+              variant="error"
+              class="wawision-shopimporter-modal__credentials-alert">
+        {{ $tc('wawision-shopimporter.modal.errorCredentials') }}
+    </sw-alert>
+    {% endblock %}
+</div>
+{% endblock %}

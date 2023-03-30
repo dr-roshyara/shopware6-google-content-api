@@ -1,0 +1,56 @@
+{
+    "name": "pickware/config-bundle",
+    "description": "A bundle for Shopware 6 that provides common plugin config functionality",
+    "license": "proprietary",
+    "type": "library",
+    "version": "1.0.1.3",
+    "authors": [
+        {
+            "name": "Pickware GmbH",
+            "email": "info@pickware.de"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "pickware/bundle-installer": "^1.0.2",
+        "pickware/dal-bundle": "^3.20.0",
+        "shopware/core": "6.4.*,>=6.4.5",
+        "symfony/config": "^5.2.3",
+        "symfony/dependency-injection": "^5.2.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5.0"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../bundles/*"
+        },
+        {
+            "type": "path",
+            "url": "../../libraries/composer-packages/*"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Pickware\\ConfigBundle\\": "src"
+        },
+        "exclude-from-classmap": [
+            "**.unit.php",
+            "**.integration.php"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true,
+            "viison/composer-git-hooks-installer-plugin": true
+        },
+        "lock": false
+    },
+    "extra": {
+        "ci-min-supported-shopware-version": "6.4.8.0"
+    },
+    "scripts": {
+        "test:unit": "./vendor/bin/phpunit --config phpunit.unit.xml --testdox"
+    }
+}

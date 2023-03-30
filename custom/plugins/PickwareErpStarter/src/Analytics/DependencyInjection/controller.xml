@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="Pickware\PickwareErpStarter\Analytics\Controller\AnalyticsController" public="true">
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+            <argument type="service" id="Pickware\PickwareErpStarter\Analytics\AnalyticsService" />
+            <argument type="service" id="Pickware\PickwareErpStarter\Analytics\AnalyticsAggregationSessionService" />
+            <argument type="service" id="Pickware\PickwareErpStarter\Analytics\AnalyticsReportConfigService" />
+            <argument type="service" id="Shopware\Core\Framework\Api\Response\ResponseFactoryRegistry" />
+        </service>
+    </services>
+</container>

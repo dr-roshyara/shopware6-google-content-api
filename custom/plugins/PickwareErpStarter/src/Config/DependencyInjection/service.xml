@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="Pickware\PickwareErpStarter\Config\Config">
+            <argument id="Doctrine\DBAL\Connection" type="service" />
+            <argument id="event_dispatcher" type="service" />
+            <tag name="kernel.terminate" method="reset" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\Config\GlobalPluginConfig">
+            <argument id="Shopware\Core\System\SystemConfig\SystemConfigService" type="service" />
+        </service>
+    </services>
+</container>

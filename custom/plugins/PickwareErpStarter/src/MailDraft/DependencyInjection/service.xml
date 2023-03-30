@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <defaults public="true" />
+        <service id="Pickware\PickwareErpStarter\MailDraft\MailDraftService">
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+            <argument type="service" id="Shopware\Core\Framework\Adapter\Twig\StringTemplateRenderer" />
+            <argument
+                type="service"
+                id="Pickware\PickwareErpStarter\MailDraft\DependencyInjection\MailTemplateContentGeneratorRegistry"
+            />
+            <argument type="service" id="Shopware\Core\Content\Mail\Service\MailFactory" />
+            <argument type="service" id="Shopware\Core\Content\Mail\Service\MailSender" />
+            <argument type="service" id="Pickware\PickwareErpStarter\MailDraft\MailDraftValidator" />
+            <argument type="service" id="Pickware\PickwareErpStarter\MailDraft\MailDraftAttachmentFactory" />
+            <argument type="service" id="monolog.logger.business_events" />
+            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="Pickware\PickwareErpStarter\MailDraft\MailDraftConfigurationService" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\MailDraft\MailDraftConfigurationService">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\MailDraft\MailDraftValidator">
+            <argument type="service" id="validator" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\MailDraft\MailDraftAttachmentFactory">
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+            <argument id="document_bundle.filesystem.private" type="service" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\MailDraft\DependencyInjection\MailTemplateContentGeneratorRegistry">
+            <argument type="tagged" tag="pickware_erp_starter.mail_template_content_generator" />
+        </service>
+    </services>
+</container>

@@ -1,0 +1,49 @@
+{
+    "name": "pickware/dependency-loader",
+    "description": "A dependency loader that ensures that all Pickware plugins that are installed in a Shopware 6 installation use the newest dependencies.",
+    "license": "proprietary",
+    "type": "composer-plugin",
+    "version": "3.3.0",
+    "authors": [
+        {
+            "name": "Pickware GmbH",
+            "email": "info@pickware.de"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "composer-plugin-api": "^1.0.0 || ^2.0.0",
+        "composer/composer": "^1.9.1 || ^2.0.0",
+        "shopware/core": "6.4.*",
+        "symfony/polyfill-php80": "^1.16",
+        "symfony/yaml": "^5.2.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pickware\\DependencyLoader\\": "src"
+        },
+        "exclude-from-classmap": [
+            "**.unit.php"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "ergebnis/composer-normalize": true,
+            "viison/composer-git-hooks-installer-plugin": true
+        },
+        "lock": false
+    },
+    "extra": {
+        "ci-min-supported-shopware-version": "6.4.2.0",
+        "class": "Pickware\\DependencyLoader\\DependencyLoaderComposerPlugin"
+    },
+    "scripts": {
+        "test:unit": "./vendor/bin/phpunit --config phpunit.unit.xml --testdox"
+    }
+}

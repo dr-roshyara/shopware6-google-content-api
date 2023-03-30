@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="Pickware\PickwareErpStarter\StockApi\TotalStockWriter" public="true">
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+            <argument type="service" id="Pickware\PickwareErpStarter\Picking\PickingRequestSolver" />
+            <argument type="service" id="Pickware\PickwareErpStarter\StockApi\StockMovementService" />
+            <argument type="service" id="pickware_erp_starter.stocking.default_stocking_strategy" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\StockApi\StockMovementService" public="true">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument type="service" id="Pickware\PickwareErpStarter\StockApi\StockLocationSnapshotGenerator" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\StockApi\StockLocationSnapshotGenerator">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\StockApi\StockMovementParser">
+            <argument id="Pickware\ValidationBundle\JsonValidator" type="service" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\StockApi\StockLocationReferenceFinder">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+        </service>
+    </services>
+</container>
